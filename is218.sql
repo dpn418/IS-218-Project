@@ -14,7 +14,7 @@ CREATE TABLE users (
                           email       VARCHAR(250)    NOT NULL UNIQUE,
                           password    VARCHAR(30)    NOT NULL,
                           PRIMARY KEY (username),
-                          CONSTRAINT chk_email CHECK(email LIKE '%_@___%'),
+                          CONSTRAINT chk_email CHECK(email LIKE '%_@___%')
 
 );
 
@@ -24,8 +24,9 @@ CREATE TABLE toDo (
                             dueDate       DATETIME       NOT NULL,     -- check this later
                             currentDate   DATETIME     default  current_timestamp,
                             description   VARCHAR(250)   NOT NULL,
-                            urgency       VARCHAR(60)    NOT NULL,
+                            urgency       VARCHAR(60)    NOT NULL, -- TINYINT(2)
 
                             PRIMARY KEY (taskId),
+                            FOREIGN KEY (username) REFERENCES users(username),
                             CONSTRAINT chk_urgency CHECK ( urgency IN ('Normal','Important','Very Important') )
 );
