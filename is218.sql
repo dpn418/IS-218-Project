@@ -24,9 +24,8 @@ CREATE TABLE toDo (
                             dueDate       DATETIME       NOT NULL,     -- check this later
                             currentDate   DATETIME     default  current_timestamp,
                             description   VARCHAR(250)   NOT NULL,
-                            urgency       VARCHAR(60)    NOT NULL, -- TINYINT(2)
+                            urgency       TINYINT(2)    NOT NULL, -- TINYINT(2) since starts at 0 'Normal','Important','Very Important'
 
                             PRIMARY KEY (taskId),
-                            FOREIGN KEY (username) REFERENCES users(username),
-                            CONSTRAINT chk_urgency CHECK ( urgency IN ('Normal','Important','Very Important') )
+                            FOREIGN KEY (username) REFERENCES users(username)
 );
