@@ -21,13 +21,14 @@ prevpass1 -> 1 password ago
 prevpass2 -> 2 passwords ago
 */
 CREATE TABLE toDo (
-	taskId        	INT           	NOT NULL AUTO_INCREMENT,
+	taskID        	INT           	NOT NULL AUTO_INCREMENT,
 	username      	VARCHAR(250)	NOT NULL,
 	completed		TINYINT(2)		NOT NULL DEFAULT 0,
 	dueDate       	DATETIME      	NOT NULL,     
+	title			VARCHAR(50)		NOT NULL,
 	description   	VARCHAR(250)  	NOT NULL,
 	urgency    		TINYINT(2)    	NOT NULL, 
-	PRIMARY KEY (taskId),
+	PRIMARY KEY (taskID),
 	FOREIGN KEY (username) REFERENCES users(username)
 );
 /* todo table notes
@@ -46,15 +47,15 @@ VALUES
 ('Zuccd!', 'Mark', 'Zuckerberg', 'givemey0urdata@gmail.com','N0FACESonlyMETA',NULL,NULL);
 
 
-INSERT INTO toDo (username, dueDate, description, urgency) 
+INSERT INTO toDo (username, dueDate, title, description, urgency) 
 VALUES
-('Sk8rboii', '2021-12-10 04:20:00', 'DO A KICKFLIP!', 0),
-('Sk8rboii', '2021-12-09 23:59:59', 'Tell everyone to DO A KICKFLIP!', 1), 
-('Ya.boy', '2021-12-10 04:20:00', 'DO A KICKFLIP!', 0),
-('Ya.boy', '2021-12-10 04:00:00', 'Learn how to do a kickflip', 0),
-('TheDude', '2021-12-10 04:20:00', 'DO A KICKFLIP!', 0),
-('TheDude', '1998-03-06 00:00:00', 'Abide', 0),
-('Zuccd!', '2021-12-10 04:20:00', 'DO A KICKFLIP!', 0),
-('Zuccd!', '2022-01-01 00:00:00', 'Sell everyones data', 0),
-('Zuccd!', '2021-12-25 00:00:00', 'Pretend to be human', 1),
-('Zuccd!', '2100-01-01 00:00:00', 'Ascend to METAVERSE', 2);
+('Sk8rboii', '2021-12-10 04:20:00', '!KICKFLIP TIME!', 'DO A KICKFLIP!', 0),
+('Sk8rboii', '2021-12-09 23:59:59', 'Spread the word', 'Tell everyone to DO A KICKFLIP!', 1), 
+('Ya.boy', '2021-12-10 04:20:00', '!KICKFLIP TIME!', 'DO A KICKFLIP!', 0),
+('Ya.boy', '2021-12-10 04:00:00', 'Get learnd', 'Learn how to do a kickflip', 0),
+('TheDude', '2021-12-10 04:20:00', '!KICKFLIP TIME!', 'DO A KICKFLIP!', 0),
+('TheDude', '1998-03-06 00:00:00', 'What the Dude does', 'Abide', 0),
+('Zuccd!', '2021-12-10 04:20:00', '!KICKFLIP TIME!', 'DO A KICKFLIP!', 0),
+('Zuccd!', '2022-01-01 00:00:00', 'Step 4:Profit', 'Sell everyones data', 0),
+('Zuccd!', '2021-12-25 00:00:00', 'Stay low', 'Pretend to be human', 1),
+('Zuccd!', '2100-01-01 00:00:00', 'Endgame', 'Ascend to METAVERSE', 2);
