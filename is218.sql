@@ -21,17 +21,19 @@ prevpass1 -> 1 password ago
 prevpass2 -> 2 passwords ago
 */
 CREATE TABLE toDo (
-	taskId        INT           NOT NULL AUTO_INCREMENT,
-	username      VARCHAR(250)	NOT NULL,
-	dueDate       DATETIME      NOT NULL,     
-	description   VARCHAR(250)  NOT NULL,
-	urgency       TINYINT(2)    NOT NULL, 
+	taskId        	INT           	NOT NULL AUTO_INCREMENT,
+	username      	VARCHAR(250)	NOT NULL,
+	dueDate       	DATETIME      	NOT NULL,     
+	description   	VARCHAR(250)  	NOT NULL,
+	urgency    		TINYINT(2)    	NOT NULL, 
+	completed		TINYINT(2)		NOT NULL DEFAULT 0,
 	PRIMARY KEY (taskId),
 	FOREIGN KEY (username) REFERENCES users(username)
 );
 /* todo table notes
 we don't really need this but if we do its here: currentDate   DATETIME     	default  current_timestamp,
 urgency : 0->'Normal' ; 1->'Important' ; 2->'Very Important'
+completed : 0-> not completed ; 1-> completed
 */
 
 
