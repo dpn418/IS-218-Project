@@ -23,10 +23,10 @@ prevpass2 -> 2 passwords ago
 CREATE TABLE toDo (
 	taskId        	INT           	NOT NULL AUTO_INCREMENT,
 	username      	VARCHAR(250)	NOT NULL,
+	completed		TINYINT(2)		NOT NULL DEFAULT 0,
 	dueDate       	DATETIME      	NOT NULL,     
 	description   	VARCHAR(250)  	NOT NULL,
 	urgency    		TINYINT(2)    	NOT NULL, 
-	completed		TINYINT(2)		NOT NULL DEFAULT 0,
 	PRIMARY KEY (taskId),
 	FOREIGN KEY (username) REFERENCES users(username)
 );
