@@ -1,50 +1,39 @@
 <?php
-function get_products_by_category($category_id) {
+function delete_account($username) {
     global $db;
-    $query = 'SELECT * FROM products
-              WHERE products.categoryID = :category_id
-              ORDER BY productID';
+    $query = 'DELETE FROM users
+              WHERE username = :username';
     $statement = $db->prepare($query);
-    $statement->bindValue(":category_id", $category_id);
-    $statement->execute();
-    $products = $statement->fetchAll();
-    $statement->closeCursor();
-    return $products;
-}
-
-function get_product($product_id) {
-    global $db;
-    $query = 'SELECT * FROM products
-              WHERE productID = :product_id';
-    $statement = $db->prepare($query);
-    $statement->bindValue(":product_id", $product_id);
-    $statement->execute();
-    $product = $statement->fetch();
-    $statement->closeCursor();
-    return $product;
-}
-
-function delete_product($product_id) {
-    global $db;
-    $query = 'DELETE FROM products
-              WHERE productID = :product_id';
-    $statement = $db->prepare($query);
-    $statement->bindValue(':product_id', $product_id);
+    $statement->bindValue(':username', $username);
     $statement->execute();
     $statement->closeCursor();
 }
 
-function add_product($category_id, $code, $name, $price) {
+function new_user($username, $fname, $lname, $email, $password) {
     global $db;
-    $query = 'INSERT INTO products
-                 (categoryID, productCode, productName, listPrice)
+    $query = 'INSERT INTO users
+                 (username, fname, lname, email, password)
               VALUES
-                 (:category_id, :code, :name, :price)';
+                 (:username, :fname, :lname, :email, :password)';
     $statement = $db->prepare($query);
-    $statement->bindValue(':category_id', $category_id);
-    $statement->bindValue(':code', $code);
-    $statement->bindValue(':name', $name);
-    $statement->bindValue(':price', $price);
+    $statement->bindValue(':username', $username);
+    $statement->bindValue(':fname', $fname);
+    $statement->bindValue(':lname', $lname);
+    $statement->bindValue(':email', $email);
+    $statement->bindValue(':password', $password);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function edit_account($email, $username, $password) {
+    global $db;
+    $query = 'UPDATE INTO users
+              SET username = :username, password = :password, dueDate = :dueDate, urgency = :urgency
+			  WHERE email = :email'
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->bindValue(':username', $username);
+    $statement->bindValue(':password', $password);
     $statement->execute();
     $statement->closeCursor();
 }

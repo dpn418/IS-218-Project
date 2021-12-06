@@ -15,22 +15,31 @@
             <tr>
 				<th>&nbsp;</th>
                 <th>Task</th>
-                <th>Due Date</th>
+				<th>Description</th>
                 <th>Urgency</th>
+                <th>Due Date</th>
+                <th>Time Left</th>
                 <th>&nbsp;</th>
             </tr>
-            <?php foreach ($products as $product) : ?>
+            <?php foreach ($urgentTasks as $urgentTask) : ?>
             <tr>
-                <td><?php echo $product['productCode']; ?></td>
-                <td><?php echo $product['productName']; ?></td>
-                <td class="right"><?php echo $product['listPrice']; ?></td>
+				<td><form action="." method="post">
+					<input type="hidden" name="action"
+							value="complete_task">
+					<input type="hidden" name="taskID"
+                           value="<?php echo $todo['taskID']; ?>">
+					<input type="submit" value="Complete">	 
+				</form></td>
+                <td><?php echo $urgentTask['title']; ?></td>
+                <td><?php echo $urgentTask['description']; ?></td>
+                <td><?php echo /*add function to change int to urgency level text*/; ?></td>
+                <td><?php echo $urgentTask['dueDate']; ?></td>
+                <td><?php echo /*Need to put time left here*/; ?></td>
                 <td><form action="." method="post">
                     <input type="hidden" name="action"
-                           value="delete_product">
-                    <input type="hidden" name="product_id"
-                           value="<?php echo $product['productID']; ?>">
-                    <input type="hidden" name="category_id"
-                           value="<?php echo $product['categoryID']; ?>">
+                           value="delete_task">
+                    <input type="hidden" name="taskID"
+                           value="<?php echo $todo['taskID']; ?>">
                     <input type="submit" value="Delete">
                 </form></td>
             </tr>
@@ -39,23 +48,33 @@
 		<h2><?php echo 'To-Do Tasks'; ?></h2>
         <table>
             <tr>
-                <th>Code</th>
-                <th>Name</th>
-                <th class="right">Price</th>
+				<th>&nbsp;</th>
+                <th>Task</th>
+				<th>Description</th>
+                <th>Urgency</th>
+                <th>Due Date</th>
+                <th>Time Left</th>
                 <th>&nbsp;</th>
             </tr>
-            <?php foreach ($products as $product) : ?>
+            <?php foreach ($todoTasks as $todoTask) : ?>
             <tr>
-                <td><?php echo $product['productCode']; ?></td>
-                <td><?php echo $product['productName']; ?></td>
-                <td><?php echo $product['listPrice']; ?></td>
+				<td><form action="." method="post">
+					<input type="hidden" name="action"
+							value="complete_task">
+					<input type="hidden" name="taskID"
+                           value="<?php echo $todo['taskID']; ?>">
+					<input type="submit" value="Complete">	 
+				</form></td>
+                <td><?php echo $todoTask['title']; ?></td>
+                <td><?php echo $todoTask['description']; ?></td>
+                <td><?php echo /*add function to change int to urgency level text*/; ?></td>
+                <td><?php echo $todoTask['dueDate']; ?></td>
+                <td><?php echo /*Need to put time left here*/; ?></td>
                 <td><form action="." method="post">
                     <input type="hidden" name="action"
-                           value="delete_product">
-                    <input type="hidden" name="product_id"
-                           value="<?php echo $product['productID']; ?>">
-                    <input type="hidden" name="category_id"
-                           value="<?php echo $product['categoryID']; ?>">
+                           value="delete_task">
+                    <input type="hidden" name="taskID"
+                           value="<?php echo $todo['taskID']; ?>">
                     <input type="submit" value="Delete">
                 </form></td>
             </tr>
@@ -64,23 +83,33 @@
 		<h2><?php echo 'Completed Tasks'; ?></h2>
         <table>
             <tr>
-                <th>Code</th>
-                <th>Name</th>
-                <th class="right">Price</th>
+				<th>&nbsp;</th>
+                <th>Task</th>
+				<th>Description</th>
+                <th>Urgency</th>
+                <th>Due Date</th>
+                <th>Time Left</th>
                 <th>&nbsp;</th>
             </tr>
-            <?php foreach ($products as $product) : ?>
+            <?php foreach ($completedTasks as $completedTask) : ?>
             <tr>
-                <td><?php echo $product['productCode']; ?></td>
-                <td><?php echo $product['productName']; ?></td>
-                <td><?php echo $product['listPrice']; ?></td>
+				<td><form action="." method="post">
+					<input type="hidden" name="action"
+							value="UNcomplete_task">
+					<input type="hidden" name="taskID"
+                           value="<?php echo $todo['taskID']; ?>">
+					<input type="submit" value="Uncomplete">	 
+				</form></td>
+                <td><?php echo $completedTask['title']; ?></td>
+                <td><?php echo $completedTask['description']; ?></td>
+                <td><?php echo /*add function to change int to urgency level text*/; ?></td>
+                <td><?php echo $completedTask['dueDate']; ?></td>
+                <td><?php echo /*Need to put time left here*/; ?></td>
                 <td><form action="." method="post">
                     <input type="hidden" name="action"
-                           value="delete_product">
-                    <input type="hidden" name="product_id"
-                           value="<?php echo $product['productID']; ?>">
-                    <input type="hidden" name="category_id"
-                           value="<?php echo $product['categoryID']; ?>">
+                           value="delete_task">
+                    <input type="hidden" name="taskID"
+                           value="<?php echo $todo['taskID']; ?>">
                     <input type="submit" value="Delete">
                 </form></td>
             </tr>

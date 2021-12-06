@@ -1,37 +1,37 @@
 <?php
-function get_todo_tasks($username) {
+function get_todo_tasks($email) {
     global $db;
     $query = 'SELECT taskID, description, dueDate, urgency FROM todo
-              WHERE todo.username = :username AND todo.completed = 0
-              ORDER BY dueDate';
+              WHERE todo.email = :email AND todo.completed = 0
+              ORDER BY dueDate DESC';
     $statement = $db->prepare($query);
-    $statement->bindValue(":username", $username);
+    $statement->bindValue(":email", $email);
     $statement->execute();
     $unfinTasks = $statement->fetchAll();
     $statement->closeCursor();
     return $unfinTasks;
 }
 
-function get_completed_tasks($username) {
+function get_completed_tasks($email) {
     global $db;
     $query = 'SELECT taskID, description, dueDate, urgency FROM todo
-              WHERE todo.username = :username AND todo.completed = 1
-              ORDER BY dueDate';
+              WHERE todo.email = :email AND todo.completed = 1
+              ORDER BY dueDate DESC';
     $statement = $db->prepare($query);
-    $statement->bindValue(":username", $username);
+    $statement->bindValue(":email", $email);
     $statement->execute();
     $unfinTasks = $statement->fetchAll();
     $statement->closeCursor();
     return $unfinTasks;
 }
 
-function get_urgent_tasks($username) {
+function get_urgent_tasks($email) {
     global $db;
     $query = 'SELECT taskID, description, dueDate, urgency FROM todo
-              WHERE todo.username = :username AND todo.completed=0 AND urgency=2
-              ORDER BY dueDate';
+              WHERE todo.email = :email AND todo.completed=0 AND urgency=2
+              ORDER BY dueDate DESC';
     $statement = $db->prepare($query);
-    $statement->bindValue(":username", $username);
+    $statement->bindValue(":email", $email);
     $statement->execute();
     $unfinTasks = $statement->fetchAll();
     $statement->closeCursor();
@@ -48,17 +48,55 @@ function delete_task($taskID) {
     $statement->closeCursor();
 }
 
-function add_task($category_id, $code, $name, $price) {
+function add_task($email, $title, $description, $dueDate, $urgency) {
     global $db;
-    $query = 'INSERT INTO products
-                 (categoryID, productCode, productName, listPrice)
+    $query = 'INSERT INTO todo
+                 (title, description, dueDate, urgency)
               VALUES
-                 (:category_id, :code, :name, :price)';
+                 (:email, :title, :description, :dueDate, :urgency)';
     $statement = $db->prepare($query);
-    $statement->bindValue(':category_id', $category_id);
-    $statement->bindValue(':code', $code);
-    $statement->bindValue(':name', $name);
-    $statement->bindValue(':price', $price);
+    $statement->bindValue(":email", $email);
+    $statement->bindValue(':title', $title);
+    $statement->bindValue(':description', $description);
+    $statement->bindValue(':dueDate', $dueDate);
+    $statement->bindValue(':urgency', $urgency);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function edit_task($taskID, $title, $description, $dueDate, $urgency) {
+    global $db;
+    $query = 'UPDATE INTO todo
+              SET title = :title, description = :description, dueDate = :dueDate, urgency = :urgency
+			  WHERE taskID = :taskID';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':taskID', $taskID);
+    $statement->bindValue(':title', $title);
+    $statement->bindValue(':description', $description);
+    $statement->bindValue(':dueDate', $dueDate);
+    $statement->bindValue(':urgency', $urgency);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function complete_task($taskID){
+	global $db;
+    $query = 'UPDATE INTO todo
+              SET completed = 1
+			  WHERE taskID = :taskID';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':taskID', $taskID);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function UNcomplete_task($taskID){
+	global $db;
+    $query = 'UPDATE INTO todo
+              SET completed = 0
+			  WHERE taskID = :taskID';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':taskID', $taskID);
     $statement->execute();
     $statement->closeCursor();
 }

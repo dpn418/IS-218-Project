@@ -1,26 +1,27 @@
 <?php
 require('../model/database.php');
-require('../model/product_db.php');
-require('../model/category_db.php');
+require('../model/user_db.php');
+require('../model/task_db.php');
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
     if ($action == NULL) {
-        $action = 'list_products';
+        $action = 'list_tasks';
     }
 }
 
-if ($action == 'list_products') {
+if ($action == 'list_tasks') {
     $category_id = filter_input(INPUT_GET, 'category_id', 
             FILTER_VALIDATE_INT);
     if ($category_id == NULL || $category_id == FALSE) {
         $category_id = 1;
     }
-    $category_name = get_category_name($category_id);
-    $categories = get_categories();
-    $products = get_products_by_category($category_id);
-    include('product_list.php');
+    
+	$todoTasks = get_todo_tasks($email);
+    $urgentTasks = get_urgent_tasks($email);
+	$completedTasks = get_completed_tasks($email);
+    include('task_list.php');
 } else if ($action == 'delete_product') {
     $product_id = filter_input(INPUT_POST, 'product_id', 
             FILTER_VALIDATE_INT);
