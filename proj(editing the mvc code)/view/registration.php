@@ -1,6 +1,7 @@
 <?php?>
 <div class="login">
-    <div action="/action_page.php" style="border:1px solid #ccc">
+
+    <form action="/action_page.php" style="border:1px solid #ccc">
         <div class="container">
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account.</p>
