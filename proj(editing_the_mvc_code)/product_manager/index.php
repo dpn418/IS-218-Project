@@ -22,7 +22,7 @@ if ($action == 'list_tasks') {
     $urgentTasks = get_urgent_tasks($email);
 	$completedTasks = get_completed_tasks($email);
     include('task_list.php');
-} else if ($action == 'delete_product') {
+} else if ($action == 'delete_task') {
     $product_id = filter_input(INPUT_POST, 'product_id', 
             FILTER_VALIDATE_INT);
     $category_id = filter_input(INPUT_POST, 'category_id', 

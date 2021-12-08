@@ -5,7 +5,7 @@ function get_todo_tasks($email) {
               WHERE todo.email = :email AND todo.completed = 0
               ORDER BY dueDate DESC';
     $statement = $db->prepare($query);
-    $statement->bindValue(":email", $email);
+    $statement->bindValue(':email', $email);
     $statement->execute();
     $unfinTasks = $statement->fetchAll();
     $statement->closeCursor();
@@ -18,7 +18,7 @@ function get_completed_tasks($email) {
               WHERE todo.email = :email AND todo.completed = 1
               ORDER BY dueDate DESC';
     $statement = $db->prepare($query);
-    $statement->bindValue(":email", $email);
+    $statement->bindValue(':email', $email);
     $statement->execute();
     $unfinTasks = $statement->fetchAll();
     $statement->closeCursor();
@@ -31,7 +31,46 @@ function get_urgent_tasks($email) {
               WHERE todo.email = :email AND todo.completed=0 AND urgency=2
               ORDER BY dueDate DESC';
     $statement = $db->prepare($query);
-    $statement->bindValue(":email", $email);
+    $statement->bindValue(':email', $email);
+    $statement->execute();
+    $unfinTasks = $statement->fetchAll();
+    $statement->closeCursor();
+    return $unfinTasks;
+}
+//Ascending versions of above
+function get_todo_tasks_rev($email) {
+    global $db;
+    $query = 'SELECT taskID, description, dueDate, urgency FROM todo
+              WHERE todo.email = :email AND todo.completed = 0
+              ORDER BY dueDate DESC';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->execute();
+    $unfinTasks = $statement->fetchAll();
+    $statement->closeCursor();
+    return $unfinTasks;
+}
+
+function get_completed_tasks_rev($email) {
+    global $db;
+    $query = 'SELECT taskID, description, dueDate, urgency FROM todo
+              WHERE todo.email = :email AND todo.completed = 1
+              ORDER BY dueDate DESC';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->execute();
+    $unfinTasks = $statement->fetchAll();
+    $statement->closeCursor();
+    return $unfinTasks;
+}
+
+function get_urgent_tasks_rev($email) {
+    global $db;
+    $query = 'SELECT taskID, description, dueDate, urgency FROM todo
+              WHERE todo.email = :email AND todo.completed=0 AND urgency=2
+              ORDER BY dueDate DESC';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
     $statement->execute();
     $unfinTasks = $statement->fetchAll();
     $statement->closeCursor();
@@ -55,7 +94,7 @@ function add_task($email, $title, $description, $dueDate, $urgency) {
               VALUES
                  (:email, :title, :description, :dueDate, :urgency)';
     $statement = $db->prepare($query);
-    $statement->bindValue(":email", $email);
+    $statement->bindValue(':email', $email);
     $statement->bindValue(':title', $title);
     $statement->bindValue(':description', $description);
     $statement->bindValue(':dueDate', $dueDate);
