@@ -39,17 +39,35 @@ if ($action == 'list_tasks') {
     $categories = get_categories();
     include('task_add.php');    
 } else if ($action == 'add_task') {
-    $category_id = filter_input(INPUT_POST, 'category_id', 
-            FILTER_VALIDATE_INT);
-    $code = filter_input(INPUT_POST, 'code');
-    $name = filter_input(INPUT_POST, 'name');
-    $price = filter_input(INPUT_POST, 'price');
-    if ($category_id == NULL || $category_id == FALSE || $code == NULL || 
-            $name == NULL || $price == NULL || $price == FALSE) {
+    $title = filter_input(INPUT_POST, 'title');
+    $description = filter_input(INPUT_POST, 'description');
+    $year = filter_input(INPUT_POST, 'year', FILTER_VALIDATE_INT);
+    $month = filter_input(INPUT_POST, 'month');
+    $date = filter_input(INPUT_POST, 'date');
+    $hour = filter_input(INPUT_POST, 'hour');
+    $minute = filter_input(INPUT_POST, 'minute');
+    $second = filter_input(INPUT_POST, 'second');
+	$urgency = filter_input(INPUT_POST, 'urgency', FILTER_VALIDATE_INT);
+    if ($title == NULL || $description == NULL || 
+			$year == NULL || $year == FALSE || 
+			$month == NULL || $date == NULL || 
+			$hour == NULL || $minute == NULL || 
+			$urgency == NULL || $urgency == FALSE) {
         $error = "Invalid task data. Check all fields and try again.";
         include('../errors/error.php');
-    } else { 
-        add_product($category_id, $code, $name, $price);
+    }elseif((($month == '04' || $month == '06' || $month == '09' || $month == '11' || ) && (intval($date)>30)) ||
+				($month == '04' && intval($date)>28)){
+		$error = "Invalid date. Please check date and month fields again";
+        include('../errors/error.php');
+	}else { 
+	//build dueDate in datetime  '2021-12-10 04:20:00'
+		$dueDate = $year."-";
+		$dueDate .= $month."-";
+		$dueDate .= $date." ";
+		$dueDate .= $hour.":";
+		$dueDate .= $minute.":";
+		$dueDate .= $second.":";
+        add_task($email, $title, $description, $dueDate, $urgency) ;
         header("Location: .?category_id=$category_id");
     }
 } else if ($action == 'list_categories') {
