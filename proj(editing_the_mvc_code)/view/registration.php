@@ -1,4 +1,6 @@
 <?php?>
+
+
 <div class="login">
 
     <form action="/action_page.php" style="border:1px solid #ccc">
@@ -8,7 +10,7 @@
             <hr>
             <div class="form-element">
             <label for="username"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="Username" required> <br>
+            <input type="text" placeholder="Enter Username" name="Username" pattern="" required> <br>
             </div>
             <div class="form-element">
             <label for="email"><b>Email</b></label>
