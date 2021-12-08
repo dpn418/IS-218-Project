@@ -37,8 +37,8 @@ if ($action == 'list_tasks') {
     }
 } else if ($action == 'show_add_form') {
     $categories = get_categories();
-    include('product_add.php');    
-} else if ($action == 'add_product') {
+    include('task_add.php');    
+} else if ($action == 'add_task') {
     $category_id = filter_input(INPUT_POST, 'category_id', 
             FILTER_VALIDATE_INT);
     $code = filter_input(INPUT_POST, 'code');
@@ -46,7 +46,7 @@ if ($action == 'list_tasks') {
     $price = filter_input(INPUT_POST, 'price');
     if ($category_id == NULL || $category_id == FALSE || $code == NULL || 
             $name == NULL || $price == NULL || $price == FALSE) {
-        $error = "Invalid product data. Check all fields and try again.";
+        $error = "Invalid task data. Check all fields and try again.";
         include('../errors/error.php');
     } else { 
         add_product($category_id, $code, $name, $price);
