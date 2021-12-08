@@ -142,3 +142,13 @@ form {
 .form-control.error input{
     border-color: red;
 }
+.form-control small{
+    margin:0;
+}
+.form-control.error small{
+    color: red;
+}
+
+.form-control.success input{
+    border-color: green;
+}

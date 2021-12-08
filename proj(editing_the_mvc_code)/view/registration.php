@@ -2,33 +2,50 @@
 
 
 <div class="login">
-
-    <form action="/" style="border:1px solid #ccc">
+    <form id="registrationForm" action="/" style="border:1px solid #ccc">
         <div class="container">
-            <h1>Sign Up</h1>
+            <div class="header">
+                <h1>Sign Up</h1>
+            </div>
             <p>Please fill in this form to create an account.</p>
             <hr>
+
             <div class="form-control">
-            <label for="username"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="Username"  required> <br>
+                <label for="usernameR"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" id="usernameR" name="usernameR"  required>
+                <small></small>
             </div>
             <div class="form-control">
-            <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" required> <br>
+                <label for="emailR"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" id="emailR" name="emailR" required>
+                <small></small>
             </div>
 
             <div class="form-control">
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required> <br>
+                <label for="passwordR"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" id="passwordR" name="passwordR" required>
+                <small></small>
             </div>
             <div class="form-control">
-            <label for="psw-repeat"><b>Repeat Password</b></label>
-            <input type="password" placeholder="Repeat Password" name="psw-repeat" required> <br>
+                <label for="passwordR"><b>Repeat Password</b></label>
+                <input type="password" placeholder="Repeat Password" name="passwordRepeatR" id="passwordRepeatR" required>
+                <small></small>
             </div>
+
             <div class="form-control">
-            <label>
-                <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-            </label>
+                <label for="fName"><b>First Name</b></label>
+                <input type="text" placeholder="Enter FirstName" id="fName" name="fName" required>
+                <small></small>
+            </div>
+
+            <div class="form-control">
+                <label for="lName"><b>Last Name</b></label>
+                <input type="text" placeholder="Enter FirstName" id="lName" name="lName" required>
+                <small></small>
+            </div>
+
+            <div class="form-control">
+                Remember me <input type="checkbox" checked="checked" name="remember" id ="remember" style="margin-bottom:15px">
             </div>
 
             <div class="clearfix">

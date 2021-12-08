@@ -6,7 +6,7 @@ const loginForm = document.getElementById('loginForm');
 loginForm.addEventListener('submit',(e)=>{
     let messages =[]
 
-    //let userCheck = username.value.match(regexU);
+
     e.preventDefault();
     checkInputs();
 
@@ -17,24 +17,57 @@ loginForm.addEventListener('submit',(e)=>{
     }
     */
 });
+
+const usernameR = document.getElementById('usernameR');
+const passwordR = document.getElementById('passwordR');
+const passwordRepeatR = document.getElementById('passwordRepeatR');
+const emailR = document.getElementById('emailR')
+const fName = document.getElementById('fName');
+const lName = document.getElementById('lName');
+const registrationForm = document.getElementById('registrationForm');
+//no constant for rememeber
+
+const regexU= /^[a-zA-Z\d]+(\.?((?<=\.)[a-zA-Z\d]+$)|[a-zA-Z\d]*$)/;
+const regexP= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$/;
+const regexE =/^[^@]+@[^@]+\.[^@]+$ /;
+const regexN =/[A-Za-z]+/;
+
+registrationForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    checkInputsR();
+});
+
+
 function checkInputs(){
-    const usernameValue = username.value.trim();
-    const passwordValue = password.value.trim();
-    let regexU= /^[a-zA-Z\d]+(\.?((?<=\.)[a-zA-Z\d]+$)|[a-zA-Z\d]*$)/;
 
-    if(!regexU.test(usernameValue)){
-        setError(username,'invalid username');
-    }else{
-        setSuccessFor(username);
-    }
-
-
-
-
+    //check regex of login
+    regexCheck(username, regexU, 'Username can only contain letters and 1 period(in between letters), it cannot contain special characters');
+    regexCheck(password, regexP, 'password must be 8-30 characters long, have a number, and have an Upper and Lower case character');
 }
 
-function regexCheck(input, regex, inputName){
+function checkInputsR(){
 
+    //check regex of Registration
+    regexCheck(usernameR, regexU, 'Username can only contain letters and 1 period(in between letters), it cannot contain special characters');
+    regexCheck(passwordR, regexP, 'password must be 8-30 characters long, have a number, and have an Upper and Lower case character');
+    regexCheck(emailR, regexE, 'email must have an @ and a .');
+    regexCheck(fName, regexN, 'Name should have no numbers or special characters');
+    regexCheck(lName, regexN, 'Name should have no numbers or special character');
+
+    //check for passwords if they match
+    if(passwordRepeatR.value==passwordR.value){
+        setSuccessFor(passwordRepeatR);
+    }else{
+        setError(passwordRepeatR,"passwords don't match");
+    }
+}
+
+function regexCheck(input, regex, message){
+    if(!regex.test(input.value.trim())){
+        setError(input,message);
+    }else{
+        setSuccessFor(input);
+    }
 }
 
 function setError(input, message){
