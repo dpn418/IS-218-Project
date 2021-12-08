@@ -4,7 +4,7 @@ const password = document.getElementById('password');
 const loginForm = document.getElementById('loginForm');
 
 loginForm.addEventListener('submit',(e)=>{
-    let messages =[]
+    //let messages =[]
 
 
     e.preventDefault();
@@ -25,11 +25,11 @@ const emailR = document.getElementById('emailR')
 const fName = document.getElementById('fName');
 const lName = document.getElementById('lName');
 const registrationForm = document.getElementById('registrationForm');
-//no constant for rememeber
+//no constant for remember
 
 const regexU= /^[a-zA-Z\d]+(\.?((?<=\.)[a-zA-Z\d]+$)|[a-zA-Z\d]*$)/;
 const regexP= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$/;
-const regexE =/^[^@]+@[^@]+\.[^@]+$ /;
+const regexE =/^[^@]+@[^@]+\.[^@]+$/;
 const regexN =/[A-Za-z]+/;
 
 registrationForm.addEventListener('submit', (e)=>{
@@ -55,7 +55,7 @@ function checkInputsR(){
     regexCheck(lName, regexN, 'Name should have no numbers or special character');
 
     //check for passwords if they match
-    if(passwordRepeatR.value==passwordR.value){
+    if(passwordRepeatR.value===passwordR.value){
         setSuccessFor(passwordRepeatR);
     }else{
         setError(passwordRepeatR,"passwords don't match");
