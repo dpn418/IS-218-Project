@@ -1,4 +1,10 @@
-<?php?>
+<?php
+	//if user is already logged in take them to list of todos
+	if(array_key_exists('email', $_SESSION)){
+		header('Location: ./taskView.php');
+	}
+
+?>
 
 <div class="login">
     <form id="loginForm" action="/" style="border:1px solid #ccc">
