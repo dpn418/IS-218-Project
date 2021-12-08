@@ -26,7 +26,7 @@ CREATE TABLE toDo (
 	completed		TINYINT(2)		NOT NULL DEFAULT 0,
 	dueDate       	DATETIME      	NOT NULL,     
 	title			VARCHAR(50)		NOT NULL,
-	description   	VARCHAR(250)  	NOT NULL,
+	description   	VARCHAR(500)  	NOT NULL,
 	urgency    		TINYINT(2)    	NOT NULL, 
 	PRIMARY KEY (taskID),
 	FOREIGN KEY (email) REFERENCES users(email)
