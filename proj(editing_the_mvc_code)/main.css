@@ -129,6 +129,16 @@ form {
     padding: .5% 1%;
 }
 
-.container .form-element{
+.container .form-control{
     margin: 1% 0;
+}
+
+.form-control input{
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: block;
+}
+
+.form-control.error input{
+    border-color: red;
 }

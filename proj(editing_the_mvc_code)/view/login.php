@@ -1,20 +1,24 @@
 <?php?>
 
 <div class="login">
-    <form id="loginForm" action="index.php" method="POST" style="border:1px solid #ccc">
+    <form id="loginForm" action="/" style="border:1px solid #ccc">
         <div class="container">
-            <h1 style="color:#56b256">Login</h1>
+            <div class="header">
+                <h1 style="color:#56b256">Login</h1>
+            </div>
             <hr>
-            <div class="form-element">
-                <label>Username</label>
-                <input type="text" name="username"  required />
+            <div class="form-control">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username"  required />
+                <small></small>
             </div>
-            <div class="form-element">
-                <label>Password</label>
-                <input type="password" name="password" required />
+
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required />
+                <small></small>
             </div>
-            <button type="submit" name="login" value="login" ">Log In</button>
+            <button type="submit">Log In</button>
         </div>
     </form>
-    <div id="error"></div>
 </div>

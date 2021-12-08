@@ -4,7 +4,7 @@
 <head>
     <title>Gaming Tasks</title>
     <link rel="stylesheet" type="text/css" href="main.css">
-    <script defer src="validation.js"></script>
+    <script defer src="view/validation.js"></script>
 </head>
 
 <!-- the body section -->
