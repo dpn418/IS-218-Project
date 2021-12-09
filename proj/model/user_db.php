@@ -47,18 +47,21 @@ function login_account($username, $password){
         echo "not email";
         $query = 'SELECT username FROM users WHERE password = :password AND username=:username';
     }
-    try {
-        $statement = $db->prepare($query);
-        $statement->bindValue(':username', $username);
-        $statement->bindValue(':password', $password);
-        $statement->execute();
-        $results = $statement->fetchAll();
-        $statement->closeCursor();
-        return $results;
-    } catch (PDOException $e) {
-        $errors = new report_error();
-        $errors->http_error("500 Internal Server Error\n\n"."There was a SQL error:\n\n" . $e->getMessage());
-    }
+
+    $SQL = new run_SQL();
+    $bindArray = array(
+        ':username'=> $username,
+        ':password'=> $password
+    );
+    return $SQL->runQueryArray($query, $bindArray);
+
+}
+
+function uniqueEU($email, $username){ //E - email U - username
+    $SQL = new run_SQL();
+    $query = "SELECT email, username FROM users WHERE email=:email OR username=:username";
+    $result = $SQL->runQuery($query);
+
 }
 
 ?>

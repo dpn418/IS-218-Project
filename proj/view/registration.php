@@ -2,7 +2,7 @@
 
 
 <div class="login">
-    <form id="registrationForm" action="/" style="border:1px solid #ccc">
+    <form id="registrationForm" action="model/connectR.php" method="post" style="border:1px solid #ccc">
         <div class="container">
             <div class="header">
                 <h1>Sign Up</h1>
@@ -27,7 +27,7 @@
                 <small></small>
             </div>
             <div class="form-control">
-                <label for="passwordR"><b>Repeat Password</b></label>
+                <label for="passwordRepeatR"><b>Repeat Password</b></label>
                 <input type="password" placeholder="Repeat Password" name="passwordRepeatR" id="passwordRepeatR" required>
                 <small></small>
             </div>

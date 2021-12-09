@@ -16,7 +16,7 @@
     $hostname = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "dn236";
+    $dbname = "shop";
     $db = NULL;
 
 
@@ -31,8 +31,10 @@
         exit();
     }
 
-    class run_SQL{
-        function runQuery($query) {
+    class run_SQL
+    {
+        function runQuery($query)
+        {
             global $db;
             $errors = new report_error();
             try {
@@ -42,10 +44,31 @@
                 $q->closeCursor();
                 return $results;
             } catch (PDOException $e) {
-                $errors->http_error("500 Internal Server Error\n\n"."There was a SQL error:\n\n" . $e->getMessage());
+                $errors->http_error("500 Internal Server Error\n\n" . "There was a SQL error:\n\n" . $e->getMessage());
+            }
+        }
+
+        function runQueryArray($query, array $list)
+        {
+            global $db;
+            $errors = new report_error();
+            try {
+                $q = $db->prepare($query);
+                foreach ($list as $key => $value) {
+                    $q->bindValue($key, $value);
+                }
+                $q->execute();
+
+                $results = $q->fetchAll();
+                $q->closeCursor();
+                return $results;
+            } catch (PDOException $e) {
+                $errors->http_error("500 Internal Server Error\n\n" . "There was a SQL error:\n\n" . $e->getMessage());
+
             }
         }
     }
+
     class report_error{
         function http_error($message)
         {

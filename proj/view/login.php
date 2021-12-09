@@ -1,4 +1,3 @@
-
 <?php
 /*
 //if user is already logged in take them to list of todos
@@ -10,7 +9,7 @@ if(array_key_exists('email', $_SESSION)){
 
 
 <div class="login">
-    <form id="loginForm" action="model/Connect.php" method="post" style="border:1px solid #ccc">
+    <form id="loginForm" action="model/connect.php" method="post" style="border:1px solid #ccc">
         <div class="container">
             <div class="header">
                 <h1 style="color:#56b256">Login</h1>
@@ -27,7 +26,7 @@ if(array_key_exists('email', $_SESSION)){
                 <input type="password" id="password" name="password" required />
                 <small></small>
             </div>
-            <button type="submit">Log In</button>
+            <input type="submit" value="Login">
         </div>
     </form>
 </div>

@@ -8,6 +8,7 @@
     $checkLogin = login_account($username, $password);
     if(count($checkLogin) >0){
         echo nl2br("\nexists\n");
+
     }
     else{
         echo nl2br("\nusername does not exist\n");
