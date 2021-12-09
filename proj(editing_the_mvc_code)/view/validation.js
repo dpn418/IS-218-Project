@@ -27,9 +27,14 @@ const lName = document.getElementById('lName');
 const registrationForm = document.getElementById('registrationForm');
 //no constant for remember
 
+//---regex checks--
+//username
 const regexU= /^[a-zA-Z\d]+(\.?((?<=\.)[a-zA-Z\d]+$)|[a-zA-Z\d]*$)/;
+//password
 const regexP= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$/;
+//email
 const regexE =/^[^@]+@[^@]+\.[^@]+$/;
+//name
 const regexN =/[A-Za-z]+/;
 
 registrationForm.addEventListener('submit', (e)=>{
@@ -41,8 +46,8 @@ registrationForm.addEventListener('submit', (e)=>{
 function checkInputs(){
 
     //check regex of login
-    regexCheck(username, regexU, 'Username can only contain letters and 1 period(in between letters), it cannot contain special characters');
-    regexCheck(password, regexP, 'password must be 8-30 characters long, have a number, and have an Upper and Lower case character');
+    regexCheckIfEmail(username, regexU, 'incorrect Username');
+    regexCheck(password, regexP, 'incorrect password');
 }
 
 function checkInputsR(){
@@ -65,8 +70,18 @@ function checkInputsR(){
 function regexCheck(input, regex, message){
     if(!regex.test(input.value.trim())){
         setError(input,message);
-    }else{
+    }
+    else{
         setSuccessFor(input);
+    }
+}
+function regexCheckIfEmail(input, regex, message){
+
+    if(regexE.test(input.value.trim()  ||  regex.test(input.value.trim()))){ //checks if input is an email or works with teh usual input
+        setSuccessFor(input);
+    }
+    else{
+        setError(input,message);
     }
 }
 

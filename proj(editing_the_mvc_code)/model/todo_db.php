@@ -105,7 +105,7 @@ function add_task($email, $title, $description, $dueDate, $urgency) {
 
 function edit_task($taskID, $title, $description, $dueDate, $urgency) {
     global $db;
-    $query = 'UPDATE INTO todo
+    $query = 'UPDATE todo
               SET title = :title, description = :description, dueDate = :dueDate, urgency = :urgency
 			  WHERE taskID = :taskID';
     $statement = $db->prepare($query);
@@ -120,7 +120,7 @@ function edit_task($taskID, $title, $description, $dueDate, $urgency) {
 
 function complete_task($taskID){
 	global $db;
-    $query = 'UPDATE INTO todo
+    $query = 'UPDATE todo
               SET completed = 1
 			  WHERE taskID = :taskID';
     $statement = $db->prepare($query);
@@ -131,7 +131,7 @@ function complete_task($taskID){
 
 function UNcomplete_task($taskID){
 	global $db;
-    $query = 'UPDATE INTO todo
+    $query = 'UPDATE todo
               SET completed = 0
 			  WHERE taskID = :taskID';
     $statement = $db->prepare($query);
