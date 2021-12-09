@@ -27,7 +27,7 @@ aside {
 }
 section {
     float: left;
-    width: 500px;
+    width: 100%;
 }
 footer {
     clear: both;

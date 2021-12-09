@@ -90,7 +90,7 @@ function delete_task($taskID) {
 function add_task($email, $title, $description, $dueDate, $urgency) {
     global $db;
     $query = 'INSERT INTO todo
-                 (title, description, dueDate, urgency)
+                 (email ,title, description, dueDate, urgency)
               VALUES
                  (:email, :title, :description, :dueDate, :urgency)';
     $statement = $db->prepare($query);

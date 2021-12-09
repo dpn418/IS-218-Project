@@ -9,8 +9,9 @@
     </aside>
 -->
     <section>
+		<h2>
         <!-- display 'very important' tasks; urgency = 2-->
-        <h2><?php echo 'Urgent Tasks'; ?></h2>
+        <h2>Urgent Tasks</h2>
         <table>
             <tr>
 				<th>&nbsp;</th>
@@ -70,7 +71,7 @@
             <?php endforeach; ?>
         </table>
 		<!--all unfinished tasks-->
-		<h2><?php echo 'To-Do Tasks'; ?></h2>
+		<h2>To-Do Tasks</h2>
         <table>
             <tr>
 				<th>&nbsp;</th>
@@ -130,7 +131,7 @@
             <?php endforeach; ?>
         </table>
 		<!--completed tasks-->
-		<h2><?php echo 'Completed Tasks'; ?></h2>
+		<h2>Completed Tasks</h2>
         <table>
             <tr>
 				<th>&nbsp;</th>
@@ -193,9 +194,6 @@
             <?php endforeach; ?>
         </table>
         <p><a href="?action=show_add_form">Add Task</a></p>
-        <p class="last_paragraph"><a href="?action=list_categories">
-                List Categories</a>
-        </p>        
     </section>
 </main>
 <?php include '../view/footer.php'; ?>

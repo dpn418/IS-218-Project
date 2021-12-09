@@ -14,7 +14,7 @@ if ($action == NULL) {
 if ($action == 'list_tasks') {
 	$email = filter_input(INPUT_GET, 'category_id');
     if ($email == NULL || $email == FALSE) {
-        $email = "givemey0urdata@gmail.com";
+        $email = "givemey0urdata@gmail.com";//testing stub replace with session email later
 		header("../index.php");
     }
     
@@ -62,8 +62,9 @@ if ($action == 'list_tasks') {
 		$dueDate .= $hour.":";
 		$dueDate .= $minute.":";
 		$dueDate .= $second;
+		$email = "givemey0urdata@gmail.com";//testing stub replace with session email later
         add_task($email, $title, $description, $dueDate, $urgency) ;
-        header("Location: .?category_id=$category_id");
+        header(".");
     }
 } 
 ?>
