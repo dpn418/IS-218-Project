@@ -5,10 +5,8 @@ const loginForm = document.getElementById('loginForm');
 
 loginForm.addEventListener('submit',(e)=>{
     //let messages =[]
+    checkInputs(e);
 
-
-    e.preventDefault();
-    checkInputs();
 
     /*
     if(messages.length>0){
@@ -38,26 +36,26 @@ const regexE =/^[^@]+@[^@]+\.[^@]+$/;
 const regexN =/[A-Za-z]+/;
 
 registrationForm.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    checkInputsR();
+    checkInputsR(e);
+
 });
 
 
-function checkInputs(){
+function checkInputs(e){
 
     //check regex of login
-    regexCheckIfEmail(username, regexU, 'incorrect Username');
-    regexCheck(password, regexP, 'incorrect password');
+    regexCheckIfEmail(username, regexU, 'incorrect Username',e);
+    regexCheck(password, regexP, 'incorrect password',e);
 }
 
-function checkInputsR(){
+function checkInputsR(e){
 
     //check regex of Registration
-    regexCheck(usernameR, regexU, 'Username can only contain letters and 1 period(in between letters), it cannot contain special characters');
-    regexCheck(passwordR, regexP, 'password must be 8-30 characters long, have a number, and have an Upper and Lower case character');
-    regexCheck(emailR, regexE, 'email must have an @ and a .');
-    regexCheck(fName, regexN, 'Name should have no numbers or special characters');
-    regexCheck(lName, regexN, 'Name should have no numbers or special character');
+    regexCheck(usernameR, regexU, 'Username can only contain letters and 1 period(in between letters), it cannot contain special characters',e);
+    regexCheck(passwordR, regexP, 'password must be 8-30 characters long, have a number, and have an Upper and Lower case character',e);
+    regexCheck(emailR, regexE, 'email must have an @ and a .',e);
+    regexCheck(fName, regexN, 'Name should have no numbers or special characters',e);
+    regexCheck(lName, regexN, 'Name should have no numbers or special character',e);
 
     //check for passwords if they match
     if(passwordRepeatR.value===passwordR.value){
@@ -67,9 +65,9 @@ function checkInputsR(){
     }
 }
 
-function regexCheck(input, regex, message){
+function regexCheck(input, regex, message,e){
     if(!regex.test(input.value.trim())){
-        setError(input,message);
+        setError(input,message,e);
     }
     else{
         setSuccessFor(input);
@@ -85,14 +83,16 @@ function regexCheckIfEmail(input, regex, message){
     }
 }
 
-function setError(input, message){
+function setError(input, message,e){
     const formControl = input.parentElement;
     const small = formControl.querySelector('small');
     formControl.className = 'form-control error';
     small.innerText = message;
+    e.preventDefault();
 }
 
 function setSuccessFor(input){
     const formControl = input.parentElement;
     formControl.className = 'form-control success';
+
 }

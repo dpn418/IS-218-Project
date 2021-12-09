@@ -41,16 +41,24 @@ function edit_account($email, $username, $password) {
 function login_account($username, $password){
     global $db;
     if(preg_match('/^[^@]+@[^@]+\.[^@]+$/', $username)==1){ //checks if username is email
-        $query = 'SELECT * FROM users WHERE password = :password AND username=:username';
+        echo "email";
+        $query = 'SELECT email FROM users WHERE password = :password AND email=:username';
     }else{
-        $query = 'SELECT * FROM users WHERE password = :password AND email=:username';
+        echo "not email";
+        $query = 'SELECT username FROM users WHERE password = :password AND username=:username';
     }
-    $statement = $db->prepare($query);
-    $statement->bindValue(':username', $username);
-    $statement->bindValue(':password', $password);
-    $statement->execute();
-
-    $statement->closeCursor();
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':username', $username);
+        $statement->bindValue(':password', $password);
+        $statement->execute();
+        $results = $statement->fetchAll();
+        $statement->closeCursor();
+        return $results;
+    } catch (PDOException $e) {
+        $errors = new report_error();
+        $errors->http_error("500 Internal Server Error\n\n"."There was a SQL error:\n\n" . $e->getMessage());
+    }
 }
 
 ?>
