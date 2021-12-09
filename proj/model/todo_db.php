@@ -1,7 +1,7 @@
 <?php
 function get_todo_tasks($email) {
     global $db;
-    $query = 'SELECT taskID, description, dueDate, urgency FROM todo
+    $query = 'SELECT taskID, title, description, dueDate, urgency FROM todo
               WHERE todo.email = :email AND todo.completed = 0
               ORDER BY dueDate DESC';
     $statement = $db->prepare($query);
@@ -14,7 +14,7 @@ function get_todo_tasks($email) {
 
 function get_completed_tasks($email) {
     global $db;
-    $query = 'SELECT taskID, description, dueDate, urgency FROM todo
+    $query = 'SELECT taskID, title, description, dueDate, urgency FROM todo
               WHERE todo.email = :email AND todo.completed = 1
               ORDER BY dueDate DESC';
     $statement = $db->prepare($query);
@@ -27,7 +27,7 @@ function get_completed_tasks($email) {
 
 function get_urgent_tasks($email) {
     global $db;
-    $query = 'SELECT taskID, description, dueDate, urgency FROM todo
+    $query = 'SELECT taskID, title, description, dueDate, urgency FROM todo
               WHERE todo.email = :email AND todo.completed=0 AND urgency=2
               ORDER BY dueDate DESC';
     $statement = $db->prepare($query);
@@ -40,9 +40,9 @@ function get_urgent_tasks($email) {
 //Ascending versions of above
 function get_todo_tasks_rev($email) {
     global $db;
-    $query = 'SELECT taskID, description, dueDate, urgency FROM todo
+    $query = 'SELECT taskID, title, description, dueDate, urgency FROM todo
               WHERE todo.email = :email AND todo.completed = 0
-              ORDER BY dueDate DESC';
+              ORDER BY dueDate ';
     $statement = $db->prepare($query);
     $statement->bindValue(':email', $email);
     $statement->execute();
@@ -53,9 +53,9 @@ function get_todo_tasks_rev($email) {
 
 function get_completed_tasks_rev($email) {
     global $db;
-    $query = 'SELECT taskID, description, dueDate, urgency FROM todo
+    $query = 'SELECT taskID, title, description, dueDate, urgency FROM todo
               WHERE todo.email = :email AND todo.completed = 1
-              ORDER BY dueDate DESC';
+              ORDER BY dueDate ';
     $statement = $db->prepare($query);
     $statement->bindValue(':email', $email);
     $statement->execute();
@@ -66,9 +66,9 @@ function get_completed_tasks_rev($email) {
 
 function get_urgent_tasks_rev($email) {
     global $db;
-    $query = 'SELECT taskID, description, dueDate, urgency FROM todo
+    $query = 'SELECT taskID, title, description, dueDate, urgency FROM todo
               WHERE todo.email = :email AND todo.completed=0 AND urgency=2
-              ORDER BY dueDate DESC';
+              ORDER BY dueDate ';
     $statement = $db->prepare($query);
     $statement->bindValue(':email', $email);
     $statement->execute();

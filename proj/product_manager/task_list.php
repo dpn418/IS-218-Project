@@ -1,13 +1,13 @@
 <?php include '../view/header.php'; ?>
 <main>
     <h1>Task List</h1>
-
+<!-- 
     <aside>
-        <!-- display a list of categories -->
+        display a list of categories 
         <h2>Stats</h2>
-        <?php include '../view/stats.php'; ?>        
+        <?php// include '../view/stats.php'; ?>        
     </aside>
-
+-->
     <section>
         <!-- display 'very important' tasks; urgency = 2-->
         <h2><?php echo 'Urgent Tasks'; ?></h2>
@@ -47,11 +47,8 @@
 					}
 				?></td>
                 <td><?php echo $urgentTask['dueDate']; ?></td>
-                <td><?php
-					$due = new DateTime($urgentTask['dueDate']);
-					echo $due->format("Y-m-d G:i:s");
-				?></td>
 				<td><?php
+					date_default_timezone_set("EST");
 					$due = new DateTime($urgentTask['dueDate']);
 					$tempdate =  date("Y-m-d G:i:s"); //current date
 					$now = new DateTime($tempdate);
@@ -72,6 +69,7 @@
             </tr>
             <?php endforeach; ?>
         </table>
+		<!--all unfinished tasks-->
 		<h2><?php echo 'To-Do Tasks'; ?></h2>
         <table>
             <tr>
@@ -109,11 +107,8 @@
 					}
 				?></td>
                 <td><?php echo $todoTask['dueDate']; ?></td>
-                <td><?php
-					$due = new DateTime($todoTask['dueDate']);
-					echo $due->format("Y-m-d G:i:s");
-				?></td>
 				<td><?php
+					date_default_timezone_set("EST");
 					$due = new DateTime($todoTask['dueDate']);
 					$tempdate =  date("Y-m-d G:i:s"); //current date
 					$now = new DateTime($tempdate);
@@ -132,28 +127,9 @@
                     <input type="submit" value="Delete">
                 </form></td>
             </tr>
-				<td><form action="." method="post">
-					<input type="hidden" name="action"
-							value="complete_task">
-					<input type="hidden" name="taskID"
-                           value="<?php echo $todo['taskID']; ?>">
-					<input type="submit" value="Complete">	 
-				</form></td>
-                <td><?php echo $todoTask['title']; ?></td>
-                <td><?php echo $todoTask['description']; ?></td>
-                <td><?php echo /*add function to change int to urgency level text*/; ?></td>
-                <td><?php echo $todoTask['dueDate']; ?></td>
-                <td><?php echo /*Need to put time left here*/; ?></td>
-                <td><form action="." method="post">
-                    <input type="hidden" name="action"
-                           value="delete_task">
-                    <input type="hidden" name="taskID"
-                           value="<?php echo $todo['taskID']; ?>">
-                    <input type="submit" value="Delete">
-                </form></td>
-            </tr>
             <?php endforeach; ?>
         </table>
+		<!--completed tasks-->
 		<h2><?php echo 'Completed Tasks'; ?></h2>
         <table>
             <tr>
@@ -191,14 +167,14 @@
 					}
 				?></td>
                 <td><?php echo $completedTask['dueDate']; ?></td>
-                <td><?php
-					$due = new DateTime($completedTask['dueDate']);
-					echo $due->format("Y-m-d G:i:s");
-				?></td>
 				<td><?php
+					date_default_timezone_set("EST");
 					$due = new DateTime($completedTask['dueDate']);
+					//$due->setTimezone(new DateTimeZone('EST'));
 					$tempdate =  date("Y-m-d G:i:s"); //current date
 					$now = new DateTime($tempdate);
+					//$now->setTimezone(new DateTimeZone('EST'));
+					echo $now->format("Y-m-d G:i:s");
 					$timeinterval = $now->diff($due)->format("%y years, %m months, %d days ,%h hours ,%i minutes");
 					if($due >= $now){
 						echo $timeinterval." left";

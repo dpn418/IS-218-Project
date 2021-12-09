@@ -12,9 +12,10 @@ if ($action == NULL) {
 }
 
 if ($action == 'list_tasks') {
-    if ($category_id == NULL || $category_id == FALSE) {
-        $category_id = 1;
-		header("./controller/view_conroller.php"
+	$email = filter_input(INPUT_GET, 'category_id');
+    if ($email == NULL || $email == FALSE) {
+        $email = "givemey0urdata@gmail.com";
+		header("../index.php");
     }
     
 	$todoTasks = get_todo_tasks($email);
@@ -22,8 +23,8 @@ if ($action == 'list_tasks') {
 	$completedTasks = get_completed_tasks($email);
     include('task_list.php');
 } else if ($action == 'delete_task') {
-    $product_id = filter_input(INPUT_POST, 'task_id', FILTER_VALIDATE_INT);
-    if ($task_id == NULL || $task_id == FALSE)
+    $task_id = filter_input(INPUT_POST, 'task_id', FILTER_VALIDATE_INT);
+    if ($task_id == NULL || $task_id == FALSE){
         $error = "Missing or incorrect task id.";
         include('../errors/error.php');
     } else { 
@@ -49,8 +50,8 @@ if ($action == 'list_tasks') {
 			$urgency == NULL || $urgency == FALSE) {
         $error = "Invalid task data. Check all fields and try again.";
         include('../errors/error.php');
-    }elseif((($month == '04' || $month == '06' || $month == '09' || $month == '11' || ) && (intval($date)>30)) ||
-				($month == '04' && intval($date)>28)){
+    }elseif((($month == '04' || $month == '06' || $month == '09' || $month == '11') && (intval($date)>30))
+				|| ($month == '04' && intval($date)>28)){
 		$error = "Invalid date. Please check date and month fields again";
         include('../errors/error.php');
 	}else { 
