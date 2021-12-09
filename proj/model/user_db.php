@@ -49,6 +49,7 @@ function login_account($username, $password){
     $statement->bindValue(':username', $username);
     $statement->bindValue(':password', $password);
     $statement->execute();
+
     $statement->closeCursor();
 }
 

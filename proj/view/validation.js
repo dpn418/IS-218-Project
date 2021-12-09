@@ -77,7 +77,7 @@ function regexCheck(input, regex, message){
 }
 function regexCheckIfEmail(input, regex, message){
 
-    if(regexE.test(input.value.trim()  ||  regex.test(input.value.trim()))){ //checks if input is an email or works with teh usual input
+    if(regexE.test(input.value.trim()) ||  regex.test(input.value.trim())){ //checks if input is an email or works with teh usual input
         setSuccessFor(input);
     }
     else{

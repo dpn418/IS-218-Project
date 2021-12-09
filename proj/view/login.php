@@ -10,7 +10,7 @@ if(array_key_exists('email', $_SESSION)){
 
 
 <div class="login">
-    <form id="loginForm" action="/" method="post" style="border:1px solid #ccc">
+    <form id="loginForm" action="model/Connect.php" method="post" style="border:1px solid #ccc">
         <div class="container">
             <div class="header">
                 <h1 style="color:#56b256">Login</h1>
