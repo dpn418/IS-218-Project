@@ -12,10 +12,10 @@ if ($action == NULL) {
 }
 
 if ($action == 'list_tasks') {
-    $category_id = filter_input(INPUT_GET, 'category_id', 
-            FILTER_VALIDATE_INT);
-    if ($category_id == NULL || $category_id == FALSE) {
-        $category_id = 1;
+	$email = filter_input(INPUT_GET, 'category_id');
+    if ($email == NULL || $email == FALSE) {
+        $email = "givemey0urdata@gmail.com";
+		header("../index.php");
     }
     
 	$todoTasks = get_todo_tasks($email);
@@ -23,20 +23,15 @@ if ($action == 'list_tasks') {
 	$completedTasks = get_completed_tasks($email);
     include('task_list.php');
 } else if ($action == 'delete_task') {
-    $product_id = filter_input(INPUT_POST, 'product_id', 
-            FILTER_VALIDATE_INT);
-    $category_id = filter_input(INPUT_POST, 'category_id', 
-            FILTER_VALIDATE_INT);
-    if ($category_id == NULL || $category_id == FALSE ||
-            $product_id == NULL || $product_id == FALSE) {
-        $error = "Missing or incorrect product id or category id.";
+    $task_id = filter_input(INPUT_POST, 'task_id', FILTER_VALIDATE_INT);
+    if ($task_id == NULL || $task_id == FALSE){
+        $error = "Missing or incorrect task id.";
         include('../errors/error.php');
     } else { 
-        delete_product($product_id);
-        header("Location: .?category_id=$category_id");
+        delete_task($task_id);
+        header("Location:");
     }
 } else if ($action == 'show_add_form') {
-    $categories = get_categories();
     include('task_add.php');    
 } else if ($action == 'add_task') {
     $title = filter_input(INPUT_POST, 'title');
@@ -55,8 +50,8 @@ if ($action == 'list_tasks') {
 			$urgency == NULL || $urgency == FALSE) {
         $error = "Invalid task data. Check all fields and try again.";
         include('../errors/error.php');
-    }elseif((($month == '04' || $month == '06' || $month == '09' || $month == '11' || ) && (intval($date)>30)) ||
-				($month == '04' && intval($date)>28)){
+    }elseif((($month == '04' || $month == '06' || $month == '09' || $month == '11') && (intval($date)>30))
+				|| ($month == '04' && intval($date)>28)){
 		$error = "Invalid date. Please check date and month fields again";
         include('../errors/error.php');
 	}else { 
@@ -70,24 +65,5 @@ if ($action == 'list_tasks') {
         add_task($email, $title, $description, $dueDate, $urgency) ;
         header("Location: .?category_id=$category_id");
     }
-} else if ($action == 'list_categories') {
-    $categories = get_categories();
-    include('category_list.php');
-} else if ($action == 'add_category') {
-    $name = filter_input(INPUT_POST, 'name');
-
-    // Validate inputs
-    if ($name == NULL) {
-        $error = "Invalid category name. Check name and try again.";
-        include('view/error.php');
-    } else {
-        add_category($name);
-        header('Location: .?action=list_categories');  // display the Category List page
-    }
-} else if ($action == 'delete_category') {
-    $category_id = filter_input(INPUT_POST, 'category_id', 
-            FILTER_VALIDATE_INT);
-    delete_category($category_id);
-    header('Location: .?action=list_categories');      // display the Category List page
-}
+} 
 ?>
