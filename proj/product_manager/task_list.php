@@ -55,8 +55,12 @@
 					$due = new DateTime($urgentTask['dueDate']);
 					$tempdate =  date("Y-m-d G:i:s"); //current date
 					$now = new DateTime($tempdate);
-					$timeleft = $now->diff($due)->format("%y years, %m months, %d days ,%h hours ,%i minutes left");
-					echo $timeleft; 
+					$timeinterval = $now->diff($due)->format("%y years, %m months, %d days ,%h hours ,%i minutes");
+					if($due >= $now){
+						echo $timeinterval." left";
+					}else{
+						echo $timeinterval." past due";
+					}
 				?></td>
                 <td><form action="." method="post">
                     <input type="hidden" name="action"
@@ -113,8 +117,12 @@
 					$due = new DateTime($todoTask['dueDate']);
 					$tempdate =  date("Y-m-d G:i:s"); //current date
 					$now = new DateTime($tempdate);
-					$timeleft = $now->diff($due)->format("%y years, %m months, %d days ,%h hours ,%i minutes left");
-					echo $timeleft; 
+					$timeinterval = $now->diff($due)->format("%y years, %m months, %d days ,%h hours ,%i minutes");
+					if($due >= $now){
+						echo $timeinterval." left";
+					}else{
+						echo $timeinterval." past due";
+					}
 				?></td>
                 <td><form action="." method="post">
                     <input type="hidden" name="action"
@@ -168,9 +176,36 @@
 				</form></td>
                 <td><?php echo $completedTask['title']; ?></td>
                 <td><?php echo $completedTask['description']; ?></td>
-                <td><?php echo /*add function to change int to urgency level text*/; ?></td>
+                <td><?php 
+					$urge = $completedTask['urgency'];
+					switch ($urge){
+						case 0:
+							echo "Normal";
+							break;
+						case 1:
+							echo "Important";
+							break;
+						case 2:
+							echo "Very Important";
+							break;
+					}
+				?></td>
                 <td><?php echo $completedTask['dueDate']; ?></td>
-                <td><?php echo /*Need to put time left here*/; ?></td>
+                <td><?php
+					$due = new DateTime($completedTask['dueDate']);
+					echo $due->format("Y-m-d G:i:s");
+				?></td>
+				<td><?php
+					$due = new DateTime($completedTask['dueDate']);
+					$tempdate =  date("Y-m-d G:i:s"); //current date
+					$now = new DateTime($tempdate);
+					$timeinterval = $now->diff($due)->format("%y years, %m months, %d days ,%h hours ,%i minutes");
+					if($due >= $now){
+						echo $timeinterval." left";
+					}else{
+						echo $timeinterval." past due";
+					}
+				?></td>
                 <td><form action="." method="post">
                     <input type="hidden" name="action"
                            value="delete_task">
@@ -181,7 +216,7 @@
             </tr>
             <?php endforeach; ?>
         </table>
-        <p><a href="?action=show_add_form">Add Product</a></p>
+        <p><a href="?action=show_add_form">Add Task</a></p>
         <p class="last_paragraph"><a href="?action=list_categories">
                 List Categories</a>
         </p>        
