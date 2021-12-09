@@ -32,9 +32,32 @@
 				</form></td>
                 <td><?php echo $urgentTask['title']; ?></td>
                 <td><?php echo $urgentTask['description']; ?></td>
-                <td><?php echo /*add function to change int to urgency level text*/; ?></td>
+                <td><?php 
+					$urge = $urgentTask['urgency'];
+					switch ($urge){
+						case 0:
+							echo "Normal";
+							break;
+						case 1:
+							echo "Important";
+							break;
+						case 2:
+							echo "Very Important";
+							break;
+					}
+				?></td>
                 <td><?php echo $urgentTask['dueDate']; ?></td>
-                <td><?php echo /*Need to put time left here*/; ?></td>
+                <td><?php
+					$due = new DateTime($urgentTask['dueDate']);
+					echo $due->format("Y-m-d G:i:s");
+				?></td>
+				<td><?php
+					$due = new DateTime($urgentTask['dueDate']);
+					$tempdate =  date("Y-m-d G:i:s"); //current date
+					$now = new DateTime($tempdate);
+					$timeleft = $now->diff($due)->format("%y years, %m months, %d days ,%h hours ,%i minutes left");
+					echo $timeleft; 
+				?></td>
                 <td><form action="." method="post">
                     <input type="hidden" name="action"
                            value="delete_task">
@@ -58,6 +81,49 @@
             </tr>
             <?php foreach ($todoTasks as $todoTask) : ?>
             <tr>
+				<td><form action="." method="post">
+					<input type="hidden" name="action"
+							value="complete_task">
+					<input type="hidden" name="taskID"
+                           value="<?php echo $todo['taskID']; ?>">
+					<input type="submit" value="Complete">	 
+				</form></td>
+                <td><?php echo $todoTask['title']; ?></td>
+                <td><?php echo $todoTask['description']; ?></td>
+                <td><?php 
+					$urge = $todoTask['urgency'];
+					switch ($urge){
+						case 0:
+							echo "Normal";
+							break;
+						case 1:
+							echo "Important";
+							break;
+						case 2:
+							echo "Very Important";
+							break;
+					}
+				?></td>
+                <td><?php echo $todoTask['dueDate']; ?></td>
+                <td><?php
+					$due = new DateTime($todoTask['dueDate']);
+					echo $due->format("Y-m-d G:i:s");
+				?></td>
+				<td><?php
+					$due = new DateTime($todoTask['dueDate']);
+					$tempdate =  date("Y-m-d G:i:s"); //current date
+					$now = new DateTime($tempdate);
+					$timeleft = $now->diff($due)->format("%y years, %m months, %d days ,%h hours ,%i minutes left");
+					echo $timeleft; 
+				?></td>
+                <td><form action="." method="post">
+                    <input type="hidden" name="action"
+                           value="delete_task">
+                    <input type="hidden" name="taskID"
+                           value="<?php echo $todo['taskID']; ?>">
+                    <input type="submit" value="Delete">
+                </form></td>
+            </tr>
 				<td><form action="." method="post">
 					<input type="hidden" name="action"
 							value="complete_task">

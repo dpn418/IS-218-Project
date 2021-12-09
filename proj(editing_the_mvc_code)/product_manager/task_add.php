@@ -21,17 +21,6 @@
 			</tr>
 			<tr>
 				<td><input type="text" name="year" maxlength="4"/>
-				<!--In case input doesnt work
-				<td><select name="year">
-					<option value='2019'>2019</option>
-					<option value='2020'>2020</option>
-					<option value='2021' selected>2021</option>
-					<option value='2022'>2022</option>
-					<option value='2023'>2023</option>
-					<option value='2024'>2024</option>
-					<option value='2025'>2025</option>
-				</select></td>
-				-->
 				<td><select name="month">
 					<option value='01'>January</option>
 					<option value='02'>February</option>

@@ -66,7 +66,7 @@ if ($action == 'list_tasks') {
 		$dueDate .= $date." ";
 		$dueDate .= $hour.":";
 		$dueDate .= $minute.":";
-		$dueDate .= $second.":";
+		$dueDate .= $second;
         add_task($email, $title, $description, $dueDate, $urgency) ;
         header("Location: .?category_id=$category_id");
     }
