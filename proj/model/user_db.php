@@ -39,7 +39,6 @@ function edit_account($email, $username, $password) {
 }
 
 function login_account($username, $password){
-    global $db;
     if(preg_match('/^[^@]+@[^@]+\.[^@]+$/', $username)==1){ //checks if username is email
         echo "email";
         $query = 'SELECT email FROM users WHERE password = :password AND email=:username';
@@ -57,10 +56,16 @@ function login_account($username, $password){
 
 }
 
+//check is email and username is unique (for Registration)
 function uniqueEU($email, $username){ //E - email U - username
     $SQL = new run_SQL();
     $query = "SELECT email, username FROM users WHERE email=:email OR username=:username";
-    $result = $SQL->runQuery($query);
+    $bindArray = array(
+        ':email'=>$email,
+        ':username'=>$username
+    );
+    return $SQL->runQueryArray($query, $bindArray);
+
 
 }
 

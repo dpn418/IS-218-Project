@@ -44,7 +44,7 @@ VALUES
 ('Ya.boy', 'Ya', 'boy', 'yab0y@gmail.com','ChillinHardInDa6',NULL,NULL),
 ('Sk8rboii', 'Tony', 'Hawk', 'areyouTonyHawk@gmail.com','YesIamThe1','Sk84ever',NULL),
 ('TheDude', 'Jeff', 'Lebowski', 'thedude@gmail.com','1000000aire',NULL,NULL),
-('Zuccd!', 'Mark', 'Zuckerberg', 'givemey0urdata@gmail.com','N0FACESonlyMETA',NULL,NULL);
+('Zuccd', 'Mark', 'Zuckerberg', 'givemey0urdata@gmail.com','N0FACESonlyMETA',NULL,NULL);
 
 
 INSERT INTO toDo (email, dueDate, title, description, urgency) 

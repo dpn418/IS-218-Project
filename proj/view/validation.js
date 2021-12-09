@@ -27,7 +27,7 @@ const registrationForm = document.getElementById('registrationForm');
 
 //---regex checks--
 //username
-const regexU= /^[a-zA-Z\d]+(\.?((?<=\.)[a-zA-Z\d]+$)|[a-zA-Z\d]*$)/;
+const regexU= /^[a-zA-Z\d]+(\.?((?<=\.)([.]*[a-zA-Z\d]+)+$)|[a-zA-Z\d]*$)/;
 //password
 const regexP= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$/;
 //email

@@ -10,8 +10,16 @@
     $lName = filter_input(INPUT_POST, 'lName');
     $remember = filter_input(INPUT_POST, 'remember'); //check box
     $action = filter_input(INPUT_POST, 'action');
+
     if($password= $passwordRepeat){
-        $checkLogin = new_user($username, $fName, $lName, $email, $password);
+        //check if email or username is not unique
+        if(count(uniqueEU($email,$username))>0){
+            echo "username or email is taken";
+        }
+        else{
+            $checkLogin = new_user($username, $fName, $lName, $email, $password);
+        }
+
     }else{
         echo "password is incorrect";
     }
