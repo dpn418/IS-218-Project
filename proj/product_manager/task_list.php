@@ -7,8 +7,6 @@ include "../view/header.php"
 
 ?>
 
-
-
 <main>
 
     <h1>Task List</h1>
@@ -232,5 +230,5 @@ include "../view/header.php"
         
     </section>
 </main>
-<?php include "../view/signOutButton.php";?>
+
 <?php include '../view/footer.php'; ?>

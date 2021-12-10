@@ -79,6 +79,10 @@
 <header>
     <h1>Gaming Tasks</h1>
 </header>
-
+<?php
+    if(isset($_SESSION['status']) && $_SESSION['status'] == 'logged in') {
+        include "../view/signOutButton.php";
+    }
+?>
 <?php require_once("$root/routes.php");?>
 

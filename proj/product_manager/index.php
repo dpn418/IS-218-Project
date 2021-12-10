@@ -16,7 +16,6 @@ if(array_key_exists('email', $_SESSION)){
     $email = $_SESSION['email'];
 }
 $action = filter_input(INPUT_POST, 'action');
-echo $action;
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
     if ($action == NULL) {
