@@ -49,9 +49,9 @@
 						for ($i = 1; $i<=31; $i++){
 							$val = sprintf('%02d', $i);
 							if ($val == $date){
-								echo '<option value=\"'.$val.'\" selected>'.$val.'</option>';
+								echo '<option value='.$val.' selected>'.$val.'</option>';
 							}else{
-								echo '<option value=\"'.$val.'\">'.$val.'</option>';
+								echo '<option value='.$val.'>'.$val.'</option>';
 							}
 						}							
 					?>
@@ -68,9 +68,9 @@
 						for ($i = 0; $i<=23; $i++){
 							$val = sprintf('%02d', $i);
 							if ($val == $hour){
-								echo '<option value=\"'.$val.'\" selected>'.$val.'</option>';
+								echo '<option value='.$val.' selected>'.$val.'</option>';
 							}else{
-								echo '<option value=\"'.$val.'\">'.$val.'</option>';
+								echo '<option value='.$val.'>'.$val.'</option>';
 							}
 						}							
 					?>
@@ -80,9 +80,9 @@
 						for ($i = 0; $i<=59; $i++){
 							$val = sprintf('%02d', $i);
 							if ($val == $minute){
-								echo '<option value=\"'.$val.'\" selected>'.$val.'</option>';
+								echo '<option value='.$val.' selected>'.$val.'</option>';
 							}else{
-								echo '<option value=\"'.$val.'\">'.$val.'</option>';
+								echo '<option value='.$val.'>'.$val.'</option>';
 							}
 						}							
 					?>
@@ -92,9 +92,9 @@
 						for ($i = 0; $i<=59; $i++){
 							$val = sprintf('%02d', $i);
 							if ($val == $second){
-								echo '<option value=\"'.$val.'\" selected>'.$val.'</option>';
+								echo '<option value='.$val.' selected>'.$val.'</option>';
 							}else{
-								echo '<option value=\"'.$val.'\">'.$val.'</option>';
+								echo '<option value='.$val.'>'.$val.'</option>';
 							}
 						}							
 					?>

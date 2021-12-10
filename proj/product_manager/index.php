@@ -14,8 +14,11 @@ if(session_status()!=2){ //edited just now
 
 if(array_key_exists('email', $_SESSION)){
     $email = $_SESSION['email'];
+    $fname = $_SESSION['fname'];
+    $lname = $_SESSION['lname'];
 }
 $action = filter_input(INPUT_POST, 'action');
+echo $action;
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
     if ($action == NULL) {
@@ -153,6 +156,7 @@ if ($action == 'list_tasks') {
 	//build dueDate in datetime  '2021-12-10 04:20:00'
 		$dueDate = $year."-";
 		$dueDate .= $month."-";
+		
 		$dueDate .= $date." ";
 		$dueDate .= $hour.":";
 		$dueDate .= $minute.":";
