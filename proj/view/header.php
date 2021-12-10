@@ -18,9 +18,7 @@
 <!-- the head section -->
 <head>
     <title>Gaming Tasks</title>
-    <style>
-        <?php include "$root/main.css"?>
-    </style>
+    <link rel="stylesheet" href="main.css">
     <script defer src="view/validation.js"></script>
 </head>
 

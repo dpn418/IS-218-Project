@@ -6,15 +6,15 @@
 <main>
             <?php
                 global $root;
-                include "$root/view/login.php";
-                include "$root/view/registration.php"; ?>
+                require_once "$root/view/login.php";
+                require_once "$root/view/registration.php"; ?>
 </main>
-            <?php include "$root/view/footer.php"; ?>
+            <?php require_once "$root/view/footer.php"; ?>
 <?php
         }
         public function task(){
             global $root;
-            require_once("$root/product_manager/index.php");
+            header("Location: $root/product_manager/index.php");
         }
 
         public function error(){

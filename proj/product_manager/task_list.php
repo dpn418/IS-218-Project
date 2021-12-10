@@ -1,5 +1,19 @@
-<?php include '../view/header.php'; ?>
+
+<!DOCTYPE html>
+<html>
+<!-- the head section -->
+<head>
+    <title>Gaming Tasks</title>
+    <link rel="stylesheet" href="../main.css">
+    <script defer src="view/validation.js"></script>
+</head>
+<header>
+    <h1>Gaming Tasks</h1>
+</header>
+
 <main>
+<main>
+
     <h1>Task List</h1>
 
     <section>
