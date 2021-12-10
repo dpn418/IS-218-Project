@@ -1,12 +1,30 @@
 <?php
+function test($type){
+    switch ($type){
+        case 'i':
+            global $root;
+            require("$root/model/database.php");
+            require("$root/model/user_db.php");
+            require("$root/model/todo_db.php");
+            break;
+        case 'h':
+            require('../model/database.php');
+            require('../model/user_db.php');
+            require('../model/todo_db.php');
+            break;
+    }
+}
+//test('h'); //tried to test this doesn't work for some reason
 require('../model/database.php');
 require('../model/user_db.php');
 require('../model/todo_db.php');
 
+
+
 $action = filter_input(INPUT_POST, 'action');
-if ($action == NULL) {
+if ($action == NULL||$action="list_tasks") {
     $action = filter_input(INPUT_GET, 'action');
-    if ($action == NULL) {
+    if ($action == NULL||$action="list_tasks") {
         $action = 'list_tasks';
     }
 }

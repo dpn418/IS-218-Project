@@ -12,11 +12,18 @@
 
         echo nl2br("\nexists\n");
         $_SESSION["errors"] = "";
-        header("Location: ../index.php?controllers=post&action=list_tasks");
+        $controller = 'post';
+        $controller = 'task';
+        $_SESSION['username'] = $username;
+        $_SESSION['password'] = $password;
+        echo "variable have been set";
+        echo "connect: ". $_SESSION['username'] . $_SESSION['password'];
+        header("Location: ../index.php?controllers=post&action=list_tasks&sessionU=$username&sessionP=$password");
     }
     else{ //something is wrong
         echo "does not exist";
         $_SESSION["errors"] = "username or password is incorrect";
+        echo "variable have been set";
         header("Location:../index.php");
     }
 ?>

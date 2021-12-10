@@ -1,17 +1,14 @@
 
-<!DOCTYPE html>
-<html>
-<!-- the head section -->
-<head>
-    <title>Gaming Tasks</title>
-    <link rel="stylesheet" href="../main.css">
-    <script defer src="view/validation.js"></script>
-</head>
-<header>
-    <h1>Gaming Tasks</h1>
-</header>
 
-<main>
+<?php echo nl2br("testing\n");
+session_start();
+echo nl2br("task_list:". $_SESSION['username'].$_SESSION['password']."\n");
+include "../view/header.php"
+
+?>
+
+
+
 <main>
 
     <h1>Task List</h1>
