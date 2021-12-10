@@ -2,7 +2,7 @@
 class PostController{
     public function list_tasks(){
         global $root;
-        echo "post: ". $_SESSION['username'] . $_SESSION['password'];
+        //echo "post: ". $_SESSION['username'] . $_SESSION['password'];
         $this->test('h');
         //
     }

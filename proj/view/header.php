@@ -9,7 +9,7 @@
         //check for status and error
         if(isset($_SESSION['status'])){
             if($_SESSION['status']=="signOut"){
-                echo nl2br("you have been sign Out\n");
+                echo nl2br("\nyou have been sign Out\n");
                 $_SESSION['status']="";
             }else{
                 $_SESSION['status'] = "";
@@ -27,10 +27,10 @@
         }else{
             $_SESSION['errors'] = "";
         }
-        echo nl2br("header: Session has been set to admin\n");
+        //echo nl2br("header: Session has been set to admin\n");
     }else{
-        echo nl2br("header: Session is already set\n");
-        echo "header: ". $_SESSION['username'] . $_SESSION['password'];
+        //echo nl2br("header: Session is already set\n");
+        //echo "header: ". $_SESSION['username'] . $_SESSION['password'];
     }
 
     if(isset($_GET['controllers']) && isset($_GET['action'])){
@@ -40,7 +40,8 @@
             $_SESSION['username'] = $_GET['sessionU'];
             $_SESSION['password'] = $_GET['sessionP'];
             $_SESSION['status'] = "logged in";
-            echo "header: set Session to ". $_SESSION['username']. $_SESSION['password'];
+            echo "You have Logged In" . $_SESSION['username'];
+            //echo "header: set Session to ". $_SESSION['username']. $_SESSION['password'];
         }
         //echo"inside controller";
     }

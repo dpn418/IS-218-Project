@@ -3,7 +3,7 @@
 <?php
     class LoginController{
         public function home() { //login page
-            echo "pages:" .$_SESSION['username'].$_SESSION['password'];
+            //echo "pages:" .$_SESSION['username'].$_SESSION['password'];
 ?>
 <main>
             <?php

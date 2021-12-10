@@ -16,7 +16,7 @@
     $hostname = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "dn236";
+    $dbname = "shop";
     $db = NULL;
 
 
