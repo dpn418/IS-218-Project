@@ -1,8 +1,8 @@
 <?php
-global $root;
-require("$root/model/database.php");
-require("$root/model/user_db.php");
-require("$root/model/todo_db.php");
+//global $root;
+require("../model/database.php");
+require("../model/user_db.php");
+require("../model/todo_db.php");
 
 
 

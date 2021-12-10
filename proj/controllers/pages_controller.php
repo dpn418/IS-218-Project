@@ -22,6 +22,15 @@
 
             require_once("$root/view/error.php");
         }
+        public function home2() { //login page ?>
+            <main>
+                <?php
+                global $root;
+                ?>
+            </main>
+            <?php include "$root/view/footer.php"; ?>
+            <?php
+        }
     }
 
 

@@ -19,7 +19,7 @@
 
     //controllers and its actions
     //to add more locations we need to add more pages
-    $controllers = array('pages' => ['home','task'], 'post' =>['list_tasks']);
+    $controllers = array('pages' => ['home','task'], 'post' =>['list_tasks','check']);
     //echo "$controller";
     //echo "$action";
     if(array_key_exists($controller, $controllers)){
