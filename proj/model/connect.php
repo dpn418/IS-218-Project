@@ -22,6 +22,7 @@
     }
     else{ //something is wrong
         echo "does not exist";
+        session_start();
         $_SESSION["errors"] = "username or password is incorrect";
         echo "variable have been set";
         header("Location:../index.php");

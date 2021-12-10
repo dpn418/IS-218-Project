@@ -14,6 +14,7 @@
     if($password= $passwordRepeat){
         //check if email or username is not unique
         if(count(uniqueEU($email,$username))>0){
+            //session_start();
             $_SESSION["errors"] = "email or username is not unique";
             header("Location:../index.php");
             echo "username or email is taken";
@@ -24,6 +25,7 @@
         }
 
     }else{
+        //session_start();
         $_SESSION["errors"] = "password is not the same";
         echo "password is not the same";
     }
