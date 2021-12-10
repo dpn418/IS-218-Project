@@ -20,7 +20,7 @@ CREATE TABLE users (
 prevpass1 -> 1 password ago
 prevpass2 -> 2 passwords ago
 */
-CREATE TABLE toDo (
+CREATE TABLE todo (
 	taskID        	INT           	NOT NULL AUTO_INCREMENT,
 	email      		VARCHAR(250)	NOT NULL,
 	completed		TINYINT(2)		NOT NULL DEFAULT 0,
@@ -47,7 +47,7 @@ VALUES
 ('Zuccd', 'Mark', 'Zuckerberg', 'givemey0urdata@gmail.com','N0FACESonlyMETA',NULL,NULL);
 
 
-INSERT INTO toDo (email, dueDate, title, description, urgency) 
+INSERT INTO todo (email, dueDate, title, description, urgency) 
 VALUES
 ('areyouTonyHawk@gmail.com', '2021-12-10 04:20:00', '!KICKFLIP TIME!', 'DO A KICKFLIP!', 0),
 ('areyouTonyHawk@gmail.com', '2021-12-09 23:59:59', 'Spread the word', 'Tell everyone to DO A KICKFLIP!', 1), 
