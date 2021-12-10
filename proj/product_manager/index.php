@@ -1,10 +1,7 @@
 <?php
-//global $root;
-require("../model/database.php");
-require("../model/user_db.php");
-require("../model/todo_db.php");
-
-
+require('../model/database.php');
+require('../model/user_db.php');
+require('../model/todo_db.php');
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -21,11 +18,14 @@ if ($sort == NULL) {
     }
 }
 
-$email = filter_input(INPUT_GET, 'category_id');//get emaill from session here
-	if ($email == NULL || $email == FALSE) {
-        $email = "givemey0urdata@gmail.com";//testing stub replace with session email later
-		//header("../index.php");//take it back to login if not logged in
+$email = filter_input(INPUT_POST, 'email');
+if ($email == NULL) {
+    $email = filter_input(INPUT_GET, 'email');
+    if ($email == NULL) {
+         $email = "givemey0urdata@gmail.com";
     }
+}
+
 
 if ($action == 'list_tasks') {
 	$unfinStats = get_unfin_stats($email);
@@ -35,7 +35,7 @@ if ($action == 'list_tasks') {
 		$todoTasks = get_todo_tasks($email);
 		$urgentTasks = get_urgent_tasks($email);
 		$completedTasks = get_completed_tasks($email);
-	}else{
+	}elseif ($sort == 'asc'){
 		$todoTasks = get_todo_tasks_rev($email);
 		$urgentTasks = get_urgent_tasks_rev($email);
 		$completedTasks = get_completed_tasks_rev($email);

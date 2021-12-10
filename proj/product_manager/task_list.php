@@ -10,17 +10,22 @@
 				<th>Urgent unfinished Tasks</th>
 				<th>Total unfinished Tasks</th>
 				<th>Completed Tasks</th>
-				<th>Sorted by</th>
+				<th>&nbsp;</th>
 			</tr>
 			<tr>
 				<td style="color:red;"><strong><?php echo $urgentStats[0][0]." tasks left";?> </strong></td>
 				<td><?php echo $unfinStats[0][0]." tasks left";?> </td>
 				<td><?php echo $completedStats[0][0]." tasks completed";?></td>
 				<td>
-					<form>
+					<form action="." method="post">
+						<input type="hidden" name="action" value="list_tasks">
 						<?php 
-							if($sort ='desc'){
-								echo "";
+							if($sort =='desc'){
+								echo "<input type=\"hidden\" name=\"sort\" value=\"asc\">";
+								echo "<input type=\"submit\" value=\"Sort by ascending\">";
+							}elseif($sort =='asc'){
+								echo "<input type=\"hidden\" name=\"sort\" value=\"desc\">";
+								echo "<input type=\"submit\" value=\"Sort by descending\">";
 							}
 						?>
 					</form>
@@ -42,7 +47,7 @@
             <tr>
 				<td>
 					<form action="." method="post">
-						c
+						<input type="hidden" name="action" value="complete_task">
 						<input type="hidden" name="taskID" value="<?php echo $urgentTask['taskID']; ?>">
 						<input type="submit" value="Complete">	 
 					</form>
