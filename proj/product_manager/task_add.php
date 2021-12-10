@@ -22,7 +22,7 @@
 			<tr>
 				<td><input type="text" name="year" maxlength="4"/>
 				<td><select name="month">
-					<option value='01'>January</option>
+					<option value='01' default>January</option>
 					<option value='02'>February</option>
 					<option value='03'>March</option>
 					<option value='04'>April</option>
@@ -36,7 +36,7 @@
 					<option value='12'>December</option>
 				</select></td>
 				<td><select name="date">
-					<option value='01'>01</option>
+					<option value='01' default>01</option>
 					<option value='02'>02</option>
 					<option value='03'>03</option>
 					<option value='04'>04</option>
@@ -76,7 +76,7 @@
 			</tr>
 			<tr>
 				<td><select name="hour">
-					<option value='00'>00</option>
+					<option value='00' default>00</option>
 					<option value='01'>01</option>
 					<option value='02'>02</option>
 					<option value='03'>03</option>
@@ -102,7 +102,7 @@
 					<option value='23'>23</option>
 				</select></td>
 				<td><select name="minute">
-					<option value='00'>00</option>
+					<option value='00' default>00</option>
 					<option value='01'>01</option>
 					<option value='02'>02</option>
 					<option value='03'>03</option>
@@ -164,7 +164,7 @@
 					<option value='59'>59</option>
 				</select></td>
 				<td><select name="second">
-					<option value='00'>00</option>
+					<option value='00' default>00</option>
 					<option value='01'>01</option>
 					<option value='02'>02</option>
 					<option value='03'>03</option>
@@ -230,7 +230,7 @@
 		
 		<label>Urgency:</label>
         <select name="urgency">
-			<option value=0>Normal</option>
+			<option value=0 default>Normal</option>
 			<option value=1>Important</option>
 			<option value=2>Very Important</option>
         </select>
