@@ -1,7 +1,7 @@
 
 <?php
     $root = realpath($_SERVER["DOCUMENT_ROOT"]);
-    $root .= '/IS-218-Project/proj';
+    $root .= '/proj';
     session_start();
     if(isset($_GET['controllers']) && isset($_GET['action'])){
         $controller = $_GET['controllers'];

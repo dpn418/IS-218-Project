@@ -16,7 +16,7 @@ if(array_key_exists('email', $_SESSION)){
             </div>
             <hr>
             <div class="form-control">
-                <small><?php echo $_SESSION['errors']?></small> <!--not working at the moment-->
+                <!--<small><?php// echo $_SESSION['errors']?></small> not working at the moment-->
                 <label for="username">Username (can be email)</label>
                 <input type="text" id="username" name="username"  required />
                 <small></small>

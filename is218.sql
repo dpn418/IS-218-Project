@@ -1,5 +1,5 @@
 
-USE `jb645`;-- put your databse name inside the single quote.
+USE `dn236`;-- put your databse name inside the single quote.
 -- if you want to upload this sql to remote njit databse server, you need put your UCID inside the single quotes.
 DROP TABLE IF EXISTS `todo`;
 DROP TABLE IF EXISTS `users`;
@@ -43,7 +43,7 @@ INSERT INTO users (username, fname, lname, email, password, prevpass1, prevpass2
 VALUES
 ('Ya.boy', 'Ya', 'boy', 'yab0y@gmail.com','ChillinHardInDa6',NULL,NULL),
 ('Sk8rboii', 'Tony', 'Hawk', 'areyouTonyHawk@gmail.com','YesIamThe1','Sk84ever',NULL),
-('TheDude', 'Jeff', 'Lebowski', 'thedude@gmail.com','1000000aire',NULL,NULL),
+('TheDude', 'Jeff', 'Lebowski', 'thedude@gmail.com','1000000Aire',NULL,NULL),
 ('Zuccd', 'Mark', 'Zuckerberg', 'givemey0urdata@gmail.com','N0FACESonlyMETA',NULL,NULL);
 
 
