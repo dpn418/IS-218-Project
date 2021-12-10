@@ -1,5 +1,5 @@
 
-USE `shop`;-- put your databse name inside the single quote.
+USE `jb645`;-- put your databse name inside the single quote.
 -- if you want to upload this sql to remote njit databse server, you need put your UCID inside the single quotes.
 DROP TABLE IF EXISTS `todo`;
 DROP TABLE IF EXISTS `users`;

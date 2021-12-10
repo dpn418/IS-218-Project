@@ -1,2 +1,5 @@
-<?php include 'controller/view_controller.php'?>
-<?php include  'controller/model_control.php'?>
+<?php
+    //checks for URL
+
+    require_once('view/header.php');
+?>

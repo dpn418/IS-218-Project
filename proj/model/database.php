@@ -22,13 +22,37 @@
 
     try {
         $db = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password); //
-        if($db != null){echo nl2br("sucessfully connected\n");} //
+        //if($db != null){echo nl2br("sucessfully connected\n");} //
     } catch (PDOException $e) {
-        $errors = new PDOException();  //
+        $errors = new report_error();  //
         echo"error";  //
         $error_message = $e->getMessage();
         $errors->http_error("500 Internal Server Error\n\n"."There was a SQL error:\n\n" . $e->getMessage());  //
         exit();
+    }
+
+    class Db{
+        private static $instance = NULL;
+        private function __construct() {}
+        private function __clone() {}
+        public static function getInstance() {
+            global $hostname, $dbname, $username, $password;
+            if (!isset(self::$instance)) {
+                $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
+                try{
+                    self::$instance = $db = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password, $pdo_options);
+                } catch (PDOException $e) {
+                    $errors = new report_error();  //
+                    echo"error";  //
+                    $error_message = $e->getMessage();
+                    $errors->http_error("500 Internal Server Error\n\n"."There was a SQL error:\n\n" . $error_message);  //
+                    exit();
+                }
+
+            }
+            return self::$instance;
+        }
+
     }
 
     class run_SQL

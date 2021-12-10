@@ -44,8 +44,8 @@ registrationForm.addEventListener('submit', (e)=>{
 function checkInputs(e){
 
     //check regex of login
-    regexCheckIfEmail(username, regexU, 'incorrect Username',e);
-    regexCheck(password, regexP, 'incorrect password',e);
+    regexCheckIfEmail(username, regexU, 'invalid Username',e);
+    regexCheck(password, regexP, 'invalid password',e);
 }
 
 function checkInputsR(e){
@@ -96,3 +96,14 @@ function setSuccessFor(input){
     formControl.className = 'form-control success';
 
 }
+
+function customErrors(inputString, message){
+    let input = document.getElementById(inputString);
+    const formControl = input.parentElement;
+    const small = formControl.querySelector('small');
+    formControl.className = 'form-control error';
+    small.innerText = message;
+}
+
+//--page load
+

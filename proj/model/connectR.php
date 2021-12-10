@@ -14,14 +14,18 @@
     if($password= $passwordRepeat){
         //check if email or username is not unique
         if(count(uniqueEU($email,$username))>0){
+            $_SESSION["errors"] = "email or username is not unique";
+            header("Location:../index.php");
             echo "username or email is taken";
         }
         else{
             $checkLogin = new_user($username, $fName, $lName, $email, $password);
+            header("Location: ../index.php?controllers=post&action=list_tasks");
         }
 
     }else{
-        echo "password is incorrect";
+        $_SESSION["errors"] = "password is not the same";
+        echo "password is not the same";
     }
 
 ?>

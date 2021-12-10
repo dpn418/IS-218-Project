@@ -152,3 +152,6 @@ form {
 .form-control.success input{
     border-color: green;
 }
+.form-control small{
+    color: red;
+}
