@@ -1,34 +1,25 @@
 <?php
-function test($type){
-    switch ($type){
-        case 'i':
-            global $root;
-            require("$root/model/database.php");
-            require("$root/model/user_db.php");
-            require("$root/model/todo_db.php");
-            break;
-        case 'h':
-            require('../model/database.php');
-            require('../model/user_db.php');
-            require('../model/todo_db.php');
-            break;
-    }
-}
+
 //test('h'); //tried to test this doesn't work for some reason
 require('../model/database.php');
 require('../model/user_db.php');
 require('../model/todo_db.php');
-session_start();
-if(array_key_exists('email', $_SESSION)){
-    $email = $_SESSION['email'];
+
+if(session_status()!=2){ //edited just now
+    session_start();
 }
 
 
 
+
+if(array_key_exists('email', $_SESSION)){
+    $email = $_SESSION['email'];
+}
 $action = filter_input(INPUT_POST, 'action');
-if ($action == NULL||$action="list_tasks") {
+echo $action;
+if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
-    if ($action == NULL||$action="list_tasks") {
+    if ($action == NULL) {
         $action = 'list_tasks';
     }
 }
@@ -108,6 +99,7 @@ if ($action == 'list_tasks') {
         header("Location: .");
     }
 } else if ($action == 'complete_task') {
+    echo "checking";
     $task_id = filter_input(INPUT_POST, 'taskID', FILTER_VALIDATE_INT);
     if ($task_id == NULL || $task_id == FALSE){
         $error = "Missing or incorrect task id.";

@@ -1,13 +1,13 @@
 
 
 <?php
-//echo nl2br("task_list: testing\n");
+//echo nl2br("testing\n");
 //echo nl2br("task_list:". $_SESSION['username'].$_SESSION['password']."\n");
 include "../view/header.php"
 
 ?>
 
-<?php include "../view/signOutButton.php";?>
+
 
 <main>
 
@@ -232,4 +232,5 @@ include "../view/header.php"
         
     </section>
 </main>
+<?php include "../view/signOutButton.php";?>
 <?php include '../view/footer.php'; ?>
