@@ -77,6 +77,54 @@ function get_urgent_tasks_rev($email) {
     return $unfinTasks;
 }
 
+function get_task($taskID) {
+	global $db;
+    $query = 'SELECT title, description, dueDate, urgency FROM todo
+              WHERE taskID = :taskID';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':taskID', $taskID);
+    $statement->execute();
+    $unfinTasks = $statement->fetchAll();
+    $statement->closeCursor();
+    return $unfinTasks;
+}
+	
+function get_unfin_stats($email) {
+	global $db;
+    $query = 'SELECT COUNT(*) FROM todo
+              WHERE email = :email AND completed = 0';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->execute();
+    $unfinTasks = $statement->fetchAll();
+    $statement->closeCursor();
+    return $unfinTasks;
+}
+	
+function get_urgent_stats($email) {
+	global $db;
+    $query = 'SELECT COUNT(*) FROM todo
+              WHERE email = :email AND completed = 0 AND urgency = 2';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->execute();
+    $unfinTasks = $statement->fetchAll();
+    $statement->closeCursor();
+    return $unfinTasks;
+}
+	
+function get_completed_stats($email) {
+	global $db;
+    $query = 'SELECT COUNT(*) FROM todo
+              WHERE email = :email AND completed = 1';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->execute();
+    $unfinTasks = $statement->fetchAll();
+    $statement->closeCursor();
+    return $unfinTasks;
+}
+
 function delete_task($taskID) {
     global $db;
     $query = 'DELETE FROM todo
