@@ -27,6 +27,16 @@
         }else{
             $_SESSION['errors'] = "";
         }
+
+        if(isset($_SESSION['errorsR'])){
+            if(strlen($_SESSION['errorsR'])>0){
+                //echo nl2br($_SESSION['errorsR']."\n");
+            }else{
+                $_SESSION['errorsR'] = "";
+            }
+        }else{
+            $_SESSION['errorsR'] = "";
+        }
         //echo nl2br("header: Session has been set to admin\n");
     }else{
         //echo nl2br("header: Session is already set\n");
@@ -65,6 +75,7 @@
     }
 
 ?>
+
 <!DOCTYPE html>
 <html>
 <!-- the head section -->
@@ -82,6 +93,9 @@
 <?php
     if(isset($_SESSION['status']) && $_SESSION['status'] == 'logged in') {
         include "../view/signOutButton.php";
+        if(isset($_SESSION['fname'], $_SESSION['lname'])){
+            echo nl2br("\n\nHello,".$_SESSION['fname'] ." ". $_SESSION['lname']) . "\n";
+        }
     }
 ?>
 <?php require_once("$root/routes.php");?>

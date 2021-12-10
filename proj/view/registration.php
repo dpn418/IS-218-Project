@@ -11,6 +11,7 @@
             <hr>
 
             <div class="form-control">
+                <small><?php echo nl2br($_SESSION['errorsR']."\n"); ?></small>
                 <label for="usernameR"><b>Username</b></label>
                 <input type="text" placeholder="Enter Username" id="usernameR" name="usernameR"  required>
                 <small></small>
@@ -55,3 +56,5 @@
         </div>
     </form>
 </div>
+
+<?php $_SESSION['errorsR']="";?> <!--reset error after using it-->
