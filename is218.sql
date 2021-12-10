@@ -1,5 +1,5 @@
 
-USE `jb645`;-- put your databse name inside the single quote.
+USE `dn236`;-- put your databse name inside the single quote.
 -- if you want to upload this sql to remote njit databse server, you need put your UCID inside the single quotes.
 DROP TABLE IF EXISTS `todo`;
 DROP TABLE IF EXISTS `users`;
@@ -20,7 +20,7 @@ CREATE TABLE users (
 prevpass1 -> 1 password ago
 prevpass2 -> 2 passwords ago
 */
-CREATE TABLE toDo (
+CREATE TABLE todo (
 	taskID        	INT           	NOT NULL AUTO_INCREMENT,
 	email      		VARCHAR(250)	NOT NULL,
 	completed		TINYINT(2)		NOT NULL DEFAULT 0,
@@ -43,11 +43,11 @@ INSERT INTO users (username, fname, lname, email, password, prevpass1, prevpass2
 VALUES
 ('Ya.boy', 'Ya', 'boy', 'yab0y@gmail.com','ChillinHardInDa6',NULL,NULL),
 ('Sk8rboii', 'Tony', 'Hawk', 'areyouTonyHawk@gmail.com','YesIamThe1','Sk84ever',NULL),
-('TheDude', 'Jeff', 'Lebowski', 'thedude@gmail.com','1000000aire',NULL,NULL),
+('TheDude', 'Jeff', 'Lebowski', 'thedude@gmail.com','1000000Aire',NULL,NULL),
 ('Zuccd', 'Mark', 'Zuckerberg', 'givemey0urdata@gmail.com','N0FACESonlyMETA',NULL,NULL);
 
 
-INSERT INTO toDo (email, dueDate, title, description, urgency) 
+INSERT INTO todo (email, dueDate, title, description, urgency) 
 VALUES
 ('areyouTonyHawk@gmail.com', '2021-12-10 04:20:00', '!KICKFLIP TIME!', 'DO A KICKFLIP!', 0),
 ('areyouTonyHawk@gmail.com', '2021-12-09 23:59:59', 'Spread the word', 'Tell everyone to DO A KICKFLIP!', 1), 

@@ -9,6 +9,7 @@ function delete_account($username) {
     $statement->closeCursor();
 }
 
+
 function new_user($username, $fname, $lname, $email, $password) {
     global $db;
     $query = 'INSERT INTO users
@@ -41,10 +42,10 @@ function edit_account($email, $username, $password) {
 function login_account($username, $password){
     if(preg_match('/^[^@]+@[^@]+\.[^@]+$/', $username)==1){ //checks if username is email
         //echo "email";
-        $query = 'SELECT email FROM users WHERE password = :password AND email=:username';
+        $query = 'SELECT email, fname, lname FROM users WHERE password = :password AND email=:username';
     }else{
         //echo "not email";
-        $query = 'SELECT username FROM users WHERE password = :password AND username=:username';
+        $query = 'SELECT email, fname, lname FROM users WHERE password = :password AND username=:username';
     }
 
     $SQL = new run_SQL();

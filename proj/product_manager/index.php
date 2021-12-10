@@ -18,6 +18,10 @@ function test($type){
 require('../model/database.php');
 require('../model/user_db.php');
 require('../model/todo_db.php');
+session_start();
+if(array_key_exists('email', $_SESSION)){
+    $email = $_SESSION['email'];
+}
 
 
 
@@ -35,7 +39,7 @@ if ($sort == NULL) {
         $sort = 'desc';
     }
 }
-
+/* hardcoded email for testing
 $email = filter_input(INPUT_POST, 'email');
 if ($email == NULL) {
     $email = filter_input(INPUT_GET, 'email');
@@ -43,7 +47,7 @@ if ($email == NULL) {
          $email = "givemey0urdata@gmail.com";
     }
 }
-
+*/
 
 if ($action == 'list_tasks') {
 	$unfinStats = get_unfin_stats($email);
