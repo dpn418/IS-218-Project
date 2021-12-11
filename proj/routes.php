@@ -1,6 +1,7 @@
 <?php
     function call($controller, $action){
-        require_once('controllers/'.$controller.'_controller.php');
+
+        require_once("controllers/".$controller."_controller.php");
 
         switch ($controller){
             //where to add cases to move to other pages

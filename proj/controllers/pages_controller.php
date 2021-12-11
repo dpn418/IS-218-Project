@@ -8,21 +8,21 @@
 <main>
             <?php
                 global $root;
-                require_once "$root/view/login.php";
-                require_once "$root/view/registration.php"; ?>
+                require_once "view/login.php";
+                require_once "view/registration.php"; ?>
 </main>
-            <?php require_once "$root/view/footer.php"; ?>
+            <?php require_once "view/footer.php"; ?>
 <?php
         }
         public function task(){
             global $root;
-            header("Location: $root/product_manager/index.php");
+            header("Location: product_manager/index.php");
         }
 
         public function error(){
             global $root;
 
-            require_once("$root/view/error.php");
+            require_once("view/error.php");
         }
         public function home2() { //login page ?>
             <main>
@@ -30,7 +30,7 @@
                 global $root;
                 ?>
             </main>
-            <?php include "$root/view/footer.php"; ?>
+            <?php include "view/footer.php"; ?>
             <?php
         }
     }

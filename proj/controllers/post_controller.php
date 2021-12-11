@@ -19,11 +19,11 @@ class PostController{
                 break;
             case 'i':
                 global $root;
-                include "$root/product_manager/index.php";
+                include "product_manager/index.php";
                 break;
             case 'r':
                 global $root;
-                require_once "$root/product_manager/index.php";
+                require_once "product_manager/index.php";
                 break;
             default:
                 break;

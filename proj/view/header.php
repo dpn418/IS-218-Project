@@ -1,7 +1,6 @@
-
 <?php
-    $root = realpath($_SERVER["DOCUMENT_ROOT"]);
-    $root .= '/IS-218-Project/proj';
+    //$root = realpath($_SERVER["DOCUMENT_ROOT"]);
+    $root = '/~jb645/IS218/IS-218-Project/proj';
     if(!isset($_SESSION['username'], $_SESSION['password'])&&session_status()!=2){
         session_start();
         $_SESSION['username']= 'admin';
@@ -97,6 +96,8 @@
         }
     }
 ?>
-<?php global $root;
-require_once("$root/routes.php");?>
+<?php
+include ("routes.php");
+//header("Location: $root/routes.php"); //<--loads in -->
+?>
 
