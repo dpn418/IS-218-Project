@@ -10,15 +10,17 @@ if(session_status()!=2){ //edited just now
 }
 
 
-
-
 if(array_key_exists('email', $_SESSION)){
     $email = $_SESSION['email'];
     $fname = $_SESSION['fname'];
     $lname = $_SESSION['lname'];
+	$user = $_SESSION['user'];
+	
+    $currentpass = $_SESSION['pass'];
+    $prevpass1 = $_SESSION['prevpass1'];
+	$prevpass2 = $_SESSION['prevpass2'];
 }
 $action = filter_input(INPUT_POST, 'action');
-echo $action;
 if ($action == NULL) {
     $action = filter_input(INPUT_GET, 'action');
     if ($action == NULL) {
@@ -130,7 +132,6 @@ if ($action == 'list_tasks') {
         include('task_edit.php');
     }
 } else if ($action == 'edit_task') {
-	echo "im right here";
 	$taskID = filter_input(INPUT_POST, 'taskID');
     $title = filter_input(INPUT_POST, 'title');
     $description = filter_input(INPUT_POST, 'description');
@@ -156,7 +157,6 @@ if ($action == 'list_tasks') {
 	//build dueDate in datetime  '2021-12-10 04:20:00'
 		$dueDate = $year."-";
 		$dueDate .= $month."-";
-		
 		$dueDate .= $date." ";
 		$dueDate .= $hour.":";
 		$dueDate .= $minute.":";
@@ -165,5 +165,151 @@ if ($action == 'list_tasks') {
         header("Location: .");
 		echo "bout to send edit query";
     }
+} else if ($action == 'show_userchange_form') {
+	$badpass = 0;
+	$baduser=0;
+	$succuser=0;
+	$succpass =0;
+	$incorrectpassword_user=0;
+	$incorrectpassword_pass=0;
+	$notmatch_user=0;
+	$notmatch_pass=0;
+    include('user_edit.php');
+} else if($action == 'edit_account_username'){
+	$newuser = filter_input(INPUT_POST, 'newuser');
+	$currpass = filter_input(INPUT_POST, 'currpass');
+	$verpass = filter_input(INPUT_POST, 'verpass');
+	if ($newuser == NULL ||$currpass==NULL || $verpass==NULL){
+		$error = "Invalid field data, please try again.";
+        include('../errors/error.php');
+	}else{
+		$uniqueuser = uniqueUsername($newuser);
+		if($uniqueuser[0][0] > 0){
+			$baduser =1;
+			$badpass = 0;
+			$succuser=0;
+			$succpass =0;
+			$incorrectpassword_user=0;
+			$incorrectpassword_pass=0;
+			$notmatch_user=0;
+			$notmatch_pass=0;
+			include('user_edit.php');
+		}elseif($currpass!=$currentpass){
+			$badpass =0;
+			$baduser=0;
+			$succuser=0;
+			$succpass =0;
+			$incorrectpassword_user=1;
+			$incorrectpassword_pass=0;
+			$notmatch_user=0;
+			$notmatch_pass=0;
+			include('user_edit.php');
+		}elseif($currpass!=$verpass){
+			$badpass =0;
+			$baduser=0;
+			$succuser=0;
+			$succpass =0;
+			$incorrectpassword_user=0;
+			$incorrectpassword_pass=0;
+			$notmatch_user=1;
+			$notmatch_pass=0;
+			include('user_edit.php');
+		}else{
+			$pattern = "/^[a-zA-Z\d]+(\.?((?<=\.)([.]*[a-zA-Z\d]+)+$)|[a-zA-Z\d]*$)/";//username pattern
+			if(preg_match($pattern, $newuser)){
+			edit_account_username($email, $newuser);
+			$_SESSION['user'] = $newuser;
+			$user = $newuser;
+			$_SESSION['username'] = $newuser;
+			$badpass = 0;
+			$baduser=0;
+			$succuser=1;
+			$succpass =0;
+			$incorrectpassword_user=0;
+			$incorrectpassword_pass=0;
+			$notmatch_user=0;
+			$notmatch_pass=0;
+			include('user_edit.php');
+			}else{
+				$badpass = 0;
+				$baduser=2;
+				$succuser=0;
+				$succpass =0;
+				$incorrectpassword_user=0;
+				$incorrectpassword_pass=0;
+				$notmatch_user=0;
+				$notmatch_pass=0;
+				include('user_edit.php');
+			}
+		}
+	}
+} else if($action == 'edit_account_password'){
+	$newpass = filter_input(INPUT_POST, 'newpass');
+	$currpass = filter_input(INPUT_POST, 'currpass');
+	$verpass = filter_input(INPUT_POST, 'verpass');
+	if ($newpass == NULL||$currpass==NULL || $verpass==NULL){
+		$error = "Invalid field data, please try again.";
+        include('../errors/error.php');
+	}else{
+		$uniquepass = uniquePassword($email, $newpass);
+		if($uniquepass[0][0] > 0){
+			$badpass =1;
+			$baduser=0;
+			$succuser=0;
+			$succpass =0;
+			$incorrectpassword_user=0;
+			$incorrectpassword_pass=0;
+			$notmatch_user=0;
+			$notmatch_pass=0;
+			include('user_edit.php');
+		}elseif($currpass!=$currentpass){
+			$badpass =0;
+			$baduser=0;
+			$succuser=0;
+			$succpass =0;
+			$incorrectpassword_user=0;
+			$incorrectpassword_pass=1;
+			$notmatch_user=0;
+			$notmatch_pass=0;
+			include('user_edit.php');
+		}elseif($currpass!=$verpass){
+			$badpass =0;
+			$baduser=0;
+			$succuser=0;
+			$succpass =0;
+			$incorrectpassword_user=0;
+			$incorrectpassword_pass=0;
+			$notmatch_user=0;
+			$notmatch_pass=1;
+			include('user_edit.php');
+		}else{
+			$pattern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,30}$/";
+			if(preg_match($pattern, $newpass)){
+			edit_account_password($email, $newpass, $currentpass, $prevpass1);
+			$_SESSION['pass'] = $newpass;
+			$currentpass = $newpass;
+			$_SESSION['password'] = $newpass;
+			$badpass = 0;
+			$baduser=0;
+			$succuser=0;
+			$succpass =1;
+			$incorrectpassword_user=0;
+			$incorrectpassword_pass=0;
+			$notmatch_user=0;
+			$notmatch_pass=0;
+			include('user_edit.php');
+			}else{
+				$badpass = 2;
+				$baduser=0;
+				$succuser=0;
+				$succpass =0;
+				$incorrectpassword_user=0;
+				$incorrectpassword_pass=0;
+				$notmatch_user=0;
+				$notmatch_pass=0;
+				include('user_edit.php');
+			}
+		}
+	}
 }
 ?>

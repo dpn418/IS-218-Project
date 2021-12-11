@@ -1,7 +1,7 @@
 
 <?php
     $root = realpath($_SERVER["DOCUMENT_ROOT"]);
-    $root .= '/IS-218-Project/proj';
+    $root .= '/proj';
     if(!isset($_SESSION['username'], $_SESSION['password'])&&session_status()!=2){
         session_start();
         $_SESSION['username']= 'admin';
@@ -27,7 +27,7 @@
         }else{
             $_SESSION['errors'] = "";
         }
-
+		
         if(isset($_SESSION['errorsR'])){
             if(strlen($_SESSION['errorsR'])>0){
                 //echo nl2br($_SESSION['errorsR']."\n");
@@ -75,7 +75,6 @@
     }
 
 ?>
-
 <!DOCTYPE html>
 <html>
 <!-- the head section -->
@@ -93,7 +92,7 @@
 <?php
     if(isset($_SESSION['status']) && $_SESSION['status'] == 'logged in') {
         include "../view/signOutButton.php";
-        if(isset($_SESSION['fname'], $_SESSION['lname'])){
+		if(isset($_SESSION['fname'], $_SESSION['lname'])){
             echo nl2br("\n\nHello,".$_SESSION['fname'] ." ". $_SESSION['lname']) . "\n";
         }
     }

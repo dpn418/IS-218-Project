@@ -1,6 +1,6 @@
 <?php include '../view/header.php'; ?>
 <main>
-    <h1>Add Product</h1>
+    <h1>Add Task</h1>
     <form action="index.php" method="post" id="edit_task_form">
         <input type="hidden" name="action" value="edit_task">
 		<input type="hidden" name="taskID" value="<?php echo $taskID;?>">
@@ -29,7 +29,7 @@
                 <th>Date</th>
 			</tr>
 			<tr>
-				<td><input type="text" name="year" maxlength="4" value="<?php echo $year;?>"/>
+				<td><input type="text" name="year" maxlength="4" value="<?php echo $year;?>"></td>
 				<td><select name="month">
 					<option value='01' <?php if($month =="01"){echo "selected";}?>>January</option>
 					<option value='02' <?php if($month =="02"){echo "selected";}?>>February</option>
