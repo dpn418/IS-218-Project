@@ -233,5 +233,4 @@ include "../view/header.php"
         
     </section>
 </main>
-<?php include "../view/signOutButton.php";?>
 <?php include '../view/footer.php'; ?>
