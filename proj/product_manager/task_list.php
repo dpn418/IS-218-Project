@@ -7,12 +7,15 @@ include "../view/header.php"
 
 ?>
 
+
+
 <main>
 
     <h1>Task List</h1>
 
     <section>
 		<p><a href="?action=show_add_form">Add Task</a></p>
+		<p><a href="?action=show_userchange_form">Change Username/Password</a></p>
 		<h2>Statistics</h2>
 		<table>
 			<tr>
@@ -230,5 +233,5 @@ include "../view/header.php"
         
     </section>
 </main>
-
+<?php include "../view/signOutButton.php";?>
 <?php include '../view/footer.php'; ?>

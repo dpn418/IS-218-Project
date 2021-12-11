@@ -12,6 +12,10 @@
 		$_SESSION['email'] = $checkLogin[0]['email'];
 		$_SESSION['fname'] = $checkLogin[0]['fname'];
 		$_SESSION['lname'] = $checkLogin[0]['lname'];
+		$_SESSION['user'] = $checkLogin[0]['username'];
+		$_SESSION['pass'] = $password;
+		$_SESSION['prevpass1'] = $checkLogin[0]['prevpass1'];
+		$_SESSION['prevpass2'] = $checkLogin[0]['prevpass2'];
         echo nl2br("\nexists\n");
         $_SESSION["errors"] = "";
         $controller = 'post';
