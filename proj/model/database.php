@@ -1,11 +1,11 @@
 <?php
-	/* NJIT HOSTING
+
 	$hostname = "sql1.njit.edu";
 	$username = "dn236"; //put ucid here
 	$password = "Nonsense1!2@";
 	$dbname = "dn236"; //Put ucid here
-	$dsn = "mysql:host=$hostname;dbname=$dbname";
-	*/
+	$db = NULL;
+
 	
 	/*New Local Hosting
     $dsn = 'mysql:host=localhost;dbname=dn236';
@@ -13,12 +13,12 @@
     $password = '';
 	*/
 	//OG Local Hosting
-    $hostname = "localhost";
+    /*$hostname = "localhost";
     $username = "root";
     $password = "";
     $dbname = "shop";
     $db = NULL;
-
+    */
 
     try {
         $db = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password); //
